@@ -106,17 +106,25 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
                                         {
                                             userData ? (
                                                 <Link href={"/profile"}>
-                                                    <Image 
-                                                        src={userData?.user.avatar ? userData.user.avatar.url : avatar} 
-                                                        alt="" width={30} height={30} className="w-[30px] h-[30px] rounded-full cursor-pointer" 
-                                                        style={{ border: activeItem === 5 ? "2px solid #37a39a" : "none" }} 
+                                                    <Image
+                                                        src={userData?.user.avatar ? userData.user.avatar.url : avatar}
+                                                        alt="" width={30} height={30} className="w-[30px] h-[30px] rounded-full cursor-pointer"
+                                                        style={{ border: activeItem === 5 ? "2px solid #37a39a" : "none" }}
                                                     />
                                                 </Link>
                                             ) : (
-                                                <HiOutlineUserCircle 
-                                                    size={25} className="hidden 800px:block cursor-pointer dark:text-white text-black" 
-                                                    onClick={() => setOpen(true)} 
-                                                />
+                                                <>
+                                                    {/* Mobile Icon */}
+                                                    <HiOutlineUserCircle
+                                                        size={25} className="block 800px:hidden cursor-pointer dark:text-white text-black"
+                                                        onClick={() => setOpen(true)}
+                                                    />
+                                                    {/* Desktop Icon */}
+                                                    <HiOutlineUserCircle
+                                                        size={25} className="hidden 800px:block cursor-pointer dark:text-white text-black"
+                                                        onClick={() => setOpen(true)}
+                                                    />
+                                                </>
                                             )
                                         }
                                     </div>
@@ -131,19 +139,28 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
                                             {
                                                 userData ? (
                                                     <Link href={"/profile"}>
-                                                        <Image 
-                                                            src={userData?.user.avatar ? userData.user.avatar.url : avatar} 
-                                                            alt="" width={30} height={30} 
-                                                            className="w-[30px] h-[30px] rounded-full ml-[20px] cursor-pointer" 
-                                                            style={{ border: activeItem === 5 ? "2px solid #37a39a" : "none" }} 
+                                                        <Image
+                                                            src={userData?.user.avatar ? userData.user.avatar.url : avatar}
+                                                            alt="" width={30} height={30}
+                                                            className="w-[30px] h-[30px] rounded-full ml-[20px] cursor-pointer"
+                                                            style={{ border: activeItem === 5 ? "2px solid #37a39a" : "none" }}
                                                         />
                                                     </Link>
                                                 ) : (
-                                                    <HiOutlineUserCircle 
-                                                        size={25} 
-                                                        className="hidden 800px:block cursor-pointer dark:text-white text-black" 
-                                                        onClick={() => setOpen(true)} 
-                                                    />
+                                                    <>
+                                                        {/* Mobile Icon */}
+                                                        <HiOutlineUserCircle
+                                                            size={25}
+                                                            className="block 800px:hidden cursor-pointer dark:text-white text-black"
+                                                            onClick={() => setOpen(true)}
+                                                        />
+                                                        {/* Desktop Icon */}
+                                                        <HiOutlineUserCircle
+                                                            size={25}
+                                                            className="hidden 800px:block cursor-pointer dark:text-white text-black"
+                                                            onClick={() => setOpen(true)}
+                                                        />
+                                                    </>
                                                 )
                                             }
                                             <br />
