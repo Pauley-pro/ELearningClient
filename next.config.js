@@ -3,11 +3,7 @@ const nextConfig = {
     images: {
         domains: ['res.cloudinary.com','randomuser.me'],
     },
-    target: 'serverless',
-    auth: {
-        // Configure auth settings
-        ssr: true,
-      },
+    output: 'serverless',
 }
 
 module.exports = nextConfig
