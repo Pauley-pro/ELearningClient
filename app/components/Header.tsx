@@ -27,8 +27,8 @@ type Props = {
 const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
     const [active, setActive] = useState(false);
     const [openSidebar, setOpenSidebar] = useState(false);
+    const { data: sessionData } = useSession();
     const { data: userData, isLoading, refetch } = useLoadUserQuery(undefined, {});
-    const { data } = useSession();
     const [socialAuth, { isSuccess, error }] = useSocialAuthMutation();
     const [logout, setLogout] = useState(false);
     const { } = useLogOutQuery(undefined, {
@@ -37,46 +37,41 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
 
     useEffect(() => {
         if (!isLoading) {
-            if (!userData) {
-                if (data) {
-                    socialAuth({
-                        email: data?.user?.email,
-                        name: data?.user?.name,
-                        avatar: data?.user?.image,
-                    });
-                    refetch();
-                }
+            if (!userData && sessionData) {
+                socialAuth({
+                    email: sessionData?.user?.email,
+                    name: sessionData?.user?.name,
+                    avatar: sessionData?.user?.image,
+                });
+                refetch();
             }
         }
-        if (data === null) {
-            if (isSuccess) {
-                toast.success("Login Successfully");
-            }
+
+        if (sessionData && isSuccess) {
+            toast.success("Login Successfully");
         }
-        if (data === null && !isLoading && !userData) {
+
+        if (!sessionData && !isLoading && !userData) {
             setLogout(true);
         }
-    }, [data, userData, isLoading, isSuccess, refetch, socialAuth]);
+    }, [sessionData, userData, isLoading, isSuccess, refetch, socialAuth]);
 
+    useEffect(() => {
+        const handleScroll = () => {
+            setActive(window.scrollY > 85);
+        };
 
-    if (typeof window !== "undefined") {
-        window.addEventListener("scroll", () => {
-            if (window.scrollY > 85) {
-                setActive(true);
-            } else {
-                setActive(false);
-            }
-        });
-    }
+        window.addEventListener("scroll", handleScroll);
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
+
     const handleClose = (e: any) => {
         if (e.target.id === "screen") {
-            {
-                setOpenSidebar(false);
-            }
+            setOpenSidebar(false);
         }
     }
-
-
 
     return (
         <>
@@ -91,7 +86,7 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
                             <div className="w-[95%] 800px:w-[92%] m-auto py-2 h-full">
                                 <div className="w-full h-[80px] flex items-center justify-between p-3">
                                     <div>
-                                        <Link href={"/"} className={`text-[25px] font-Poppins font-[500] text-black dark:text-white`}>
+                                        <Link href={"/"} className="text-[25px] font-Poppins font-[500] text-black dark:text-white">
                                             ELearning
                                         </Link>
                                     </div>
