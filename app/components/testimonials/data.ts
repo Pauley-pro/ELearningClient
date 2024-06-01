@@ -1,17 +1,4 @@
-import React, { useEffect, useState } from "react";
-import Image from "next/image";
-import { styles } from "@/app/styles/style";
-import ReviewCard from "../Review/ReviewCard";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import { ArrowBackIos, ArrowForwardIos } from "@material-ui/icons";
-import NextBtn from "@/app/utils/PreviousBtn";
-import PreviousBtn from "@/app/utils/NextBtn";
-
-type Props = {}
-
-export const reviews = [
+export const data = [
     {
         name: "Gene Bates",
         avatar: "https://randomuser.me/api/portraits/men/1.jpg",
@@ -49,67 +36,3 @@ export const reviews = [
         comment: "Join ELearning! ELearning focuses on practical applications rather than just teaching the theory behind programming languages or frameworks. I took a lesson on creating a web marketplace using React JS, and it was very helpful in teaching me the different stages involved in creating a project from start to finish. Overall, I highly recommend ELearning to anyone looking to improve their programming skills and build practical projects. ELearning is a great resource that will help you take your skills to the next level.",
     },
 ]
-
-const Reviews = (props: Props) => {
-    const settings = {
-        dots: true,
-        fade: true,
-        autoplay: true,
-        infinite: true,
-        speed: 500,
-        autoplaySpeed: 5000,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        nextArrow: <NextBtn icon={ArrowForwardIos} />,
-        prevArrow: <PreviousBtn icon={ArrowBackIos} />,
-        appendDots: (dots: any) => <ul>{dots}</ul>,
-        customPaging: (i: any) => (
-            <div className="ft-slick__dots--custom">
-                <div className="loading" />
-            </div>
-        )
-    };
-
-    return (
-        <div className="w-[90%] 800px:w-[85%] m-auto">
-            <div className="w-full 800px:flex items-center">
-                <div className="800px:w-[50%] w-full">
-                    <Image
-                        src={require("../../../public/images/business-img.png")}
-                        alt="business"
-                        width={600}
-                        height={600}
-                    />
-                </div>
-                <div className="800px:w-[50%] w-full">
-                    <h3 className={`${styles.title} 800px:!text-[40px]`}>
-                        Our Students Are <span className="text-gradient">Our Strength</span>{" "}<br />See What They Say About Us
-                    </h3>
-                    <br />
-                    <p className={styles.label}>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque unde
-                        voluptatum dignissimos, nulla perferendis dolorem voluptate nemo
-                        possimus magni deleniti natus accusamus officiis quasi nihil
-                        commodi, praesentium quidem, quis doloribus?
-                    </p>
-                </div>
-                <br />
-                <br />
-            </div>
-            <br />
-            <br />
-            <div className="flex justify-center">
-                <div className="w-[80%] max-w-[1200px] px-4 mx-auto">
-                    <Slider {...settings}>
-                        {
-                            reviews && reviews.map((i, index) => <ReviewCard item={i} key={index} />)
-                        }
-                    </Slider>
-                </div>
-            </div>
-
-        </div>
-    )
-}
-
-export default Reviews;
