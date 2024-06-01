@@ -145,6 +145,7 @@ body {
   height: 120px !important;
   border: 3px solid #994d47;
   padding: 3px;
+  border-radius: 50%;
 }
 .Name {
   font-size: 20px;

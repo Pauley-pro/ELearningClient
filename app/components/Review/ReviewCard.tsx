@@ -1,7 +1,6 @@
 import Ratings from '@/app/utils/Ratings';
 import Image from 'next/image';
 import React from 'react';
-import { Avatar } from "@material-ui/core";
 
 type Props = {
     item:any;
@@ -11,10 +10,12 @@ const ReviewCard = (props: Props) => {
     return (
         <div className="main">
             <div className="Client-Card" style={{ display: "flex" }}>
-                <Avatar
-                    imgProps={{ style: { borderRadius: "50%" } }}
+                <Image
+                    alt=""
                     className="avatar"
                     src={props.item.avatar}
+                    width={100}
+                    height={100}
                 />
                 <p style={{ marginTop: 25 }}>
                     <span>&ldquo;</span>

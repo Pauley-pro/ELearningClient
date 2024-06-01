@@ -5,7 +5,7 @@ import ReviewCard from "../Review/ReviewCard";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { ArrowBackIos, ArrowForwardIos } from "@material-ui/icons";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import NextBtn from "@/app/utils/PreviousBtn";
 import PreviousBtn from "@/app/utils/NextBtn";
 
@@ -60,8 +60,8 @@ const Reviews = (props: Props) => {
         autoplaySpeed: 5000,
         slidesToShow: 1,
         slidesToScroll: 1,
-        nextArrow: <NextBtn icon={ArrowForwardIos} />,
-        prevArrow: <PreviousBtn icon={ArrowBackIos} />,
+        nextArrow: <NextBtn icon={IoIosArrowForward} />,
+        prevArrow: <PreviousBtn icon={IoIosArrowBack} />,
         appendDots: (dots: any) => <ul>{dots}</ul>,
         customPaging: (i: any) => (
             <div className="ft-slick__dots--custom">
