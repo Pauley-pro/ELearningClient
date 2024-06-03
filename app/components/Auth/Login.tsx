@@ -46,7 +46,7 @@ const Login:FC<Props> = ({ setRoute, setOpen, refetch }) => {
     },[isSuccess, error, refetch, setOpen]);
     const {errors, touched, values, handleChange, handleSubmit} = formik;
     return (
-        <div className="w-full">
+        <div className="w-full max-w-md mx-auto p-4 sm:p-6 lg:p-8">
             <h1 className={`${styles.title}`}>
                 Login with ELearning
             </h1>
