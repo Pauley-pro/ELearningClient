@@ -227,7 +227,7 @@ const AllUsers: FC<Props> = ({ isTeam }) => {
                                                 placeholder="Enter email..."
                                                 className={`${styles.input}`}
                                             />
-                                            <select name="" id="" className={`${styles.input} !mt-6`}>
+                                            <select name="" id="" className={`${styles.input} !mt-6`} value={role} onChange={(e) => setRole(e.target.value)}>
                                                 <option value="admin">Admin</option>
                                                 <option value="user">User</option>
                                             </select>
