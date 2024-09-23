@@ -90,19 +90,15 @@ export const authApi = apiSlice.injectEndpoints({
                 method: "GET",
                 credentials: "include" as const,
             }),
-            async onQueryStarted(arg, { queryFulfilled, dispatch }) {
-                try {
-                    await queryFulfilled;
-                    
-                    localStorage.removeItem("accessToken");
-                    localStorage.removeItem("refreshToken");
+            async onQueryStarted(arg,{queryFulfilled,dispatch}){
+                try{
+                    Cookies.remove("accessToken", { path: "/", sameSite: "None", secure: true, expires: new Date(0) });
+                    Cookies.remove("refreshToken", { path: "/", sameSite: "None", secure: true, expires: new Date(0) });
 
-                    Cookies.remove("accessToken", { path: '/', sameSite: 'None', secure: true });
-                    Cookies.remove("refreshToken", { path: '/', sameSite: 'None', secure: true });
-
-                    // Clear Redux state
-                    dispatch(userLoggedOut());
-                } catch (error: any) {
+                    dispatch(
+                        userLoggedOut()
+                    );
+                } catch(error:any){
                     console.log(error);
                 }
             },
