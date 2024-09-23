@@ -94,9 +94,8 @@ export const authApi = apiSlice.injectEndpoints({
                 try {
                     await queryFulfilled;
                     
-                    // Clear localStorage/sessionStorage on logout
-                    Cookies.remove("accessToken");
-                    Cookies.remove("refreshToken");
+                    localStorage.removeItem("accessToken");
+                    localStorage.removeItem("refreshToken");
 
                     // Clear Redux state
                     dispatch(userLoggedOut());
