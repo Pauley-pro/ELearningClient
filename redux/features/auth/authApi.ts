@@ -1,5 +1,6 @@
 import { apiSlice } from "../api/apiSlice";
 import { userLoggedIn, userLoggedOut, userRegistration } from "./authSlice";
+import Cookies from "js-cookie";
 
 type RegistrationResponse = {
     message: string;
@@ -94,8 +95,8 @@ export const authApi = apiSlice.injectEndpoints({
                     await queryFulfilled;
                     
                     // Clear localStorage/sessionStorage on logout
-                    localStorage.removeItem("accessToken");
-                    localStorage.removeItem("refreshToken");
+                    Cookies.remove("accessToken");
+                    Cookies.remove("refreshToken");
 
                     // Clear Redux state
                     dispatch(userLoggedOut());
