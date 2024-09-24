@@ -5,8 +5,10 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
     user: "",
 };*/
 
+const isBrowser = typeof window !== "undefined";
+
 const initialState = {
-    token: localStorage.getItem("accessToken") || "", // Load from localStorage on app start
+    token: isBrowser ? localStorage.getItem("accessToken") || "" : "", // Load token only if on the client
     user: "",
 };
 
@@ -14,9 +16,13 @@ const authSlice = createSlice({
     name: "auth",
     initialState,
     reducers: {
-        userRegistration: (state, action: PayloadAction<{token:string}>) => {
+        userRegistration: (state, action: PayloadAction<{ token: string }>) => {
             state.token = action.payload.token;
-            localStorage.setItem("accessToken", action.payload.token);
+
+            // Store token in localStorage only if on the client
+            if (isBrowser) {
+                localStorage.setItem("accessToken", action.payload.token);
+            }
         },
         userLoggedIn: (state, action: PayloadAction<{accessToken:string, user:string}>) => {
             state.token = action.payload.accessToken;
