@@ -89,13 +89,18 @@ export const authApi = apiSlice.injectEndpoints({
                 method: "GET",
                 credentials: "include" as const,
             }),
-            async onQueryStarted(arg,{queryFulfilled,dispatch}){
-                try{
-                    dispatch(
-                        userLoggedOut()
-                    );
-                } catch(error:any){
-                    console.log(error);
+            async onQueryStarted(arg, { queryFulfilled, dispatch }) {
+                try {
+                    await queryFulfilled;
+
+                    // Clear local storage or cookies storing tokens
+                    localStorage.removeItem("accessToken");
+                    localStorage.removeItem("refreshToken");
+
+                    // Dispatch action to clear Redux state
+                    dispatch(userLoggedOut());
+                } catch (error: any) {
+                    console.log("Error during logout", error);
                 }
             },
         }),
