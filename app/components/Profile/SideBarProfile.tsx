@@ -5,7 +5,11 @@ import avatarDefault from "../../../public/images/noavatar.jpg";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { SiCoursera } from "react-icons/si"
 import { AiOutlineLogout } from 'react-icons/ai';
-import { MdOutlineAdminPanelSettings } from "react-icons/md"
+import { MdOutlineAdminPanelSettings } from "react-icons/md";
+import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
+import toast from 'react-hot-toast';
+import { server } from '@/server';
 
 type Props = {
   user: any;
@@ -15,7 +19,27 @@ type Props = {
   logOutHandler: any; 
 }
 
-const SideBarProfile:FC<Props> = ({user, active, avatar, setActive, logOutHandler}) => {
+const SideBarProfile:FC<Props> = ({user, active, avatar, setActive }) => {
+  const router = useRouter();
+
+  const logOutHandler = async () => {
+    try {
+      Cookies.remove("userId");
+      Cookies.remove("user_token");
+      const response = await fetch(`${server}/api/users/logout`, {
+        method: "GET",
+      });
+
+      console.log(response.status === 200 ? "Logged Out!" : "Problem Occured!");
+      if (response.status === 200) {
+        toast.success("Logged Out Successfully!");
+        router.push("/");
+      }
+    } catch (err) {
+      console.error("Error during logout:", err);
+    }
+  };
+
   return (
     <div className="w-full">
       <div className={`w-full flex items-center px-3 py-4 cursor-pointer ${active === 1 ? "dark:bg-slate-800 bg-white" : "bg-transparent"}`} onClick={() => setActive(1)}>
