@@ -1,6 +1,5 @@
 import { apiSlice } from "../api/apiSlice";
 import { userLoggedIn, userLoggedOut, userRegistration } from "./authSlice";
-import Cookies from "js-cookie";
 
 type RegistrationResponse = {
     message: string;
@@ -92,9 +91,6 @@ export const authApi = apiSlice.injectEndpoints({
             }),
             async onQueryStarted(arg,{queryFulfilled,dispatch}){
                 try{
-                    Cookies.remove("accessToken", { path: "/", sameSite: "None", secure: true, expires: new Date(0) });
-                    Cookies.remove("refreshToken", { path: "/", sameSite: "None", secure: true, expires: new Date(0) });
-
                     dispatch(
                         userLoggedOut()
                     );
