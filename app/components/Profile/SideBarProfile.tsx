@@ -26,7 +26,7 @@ const SideBarProfile:FC<Props> = ({user, active, avatar, setActive }) => {
     try {
       Cookies.remove("userId");
       Cookies.remove("user_token");
-      const response = await fetch(`${server}/api/users/logout`, {
+      const response = await fetch(`${server}/api/vi/logout`, {
         method: "GET",
       });
 
