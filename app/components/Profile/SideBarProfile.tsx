@@ -6,10 +6,6 @@ import { RiLockPasswordLine } from "react-icons/ri";
 import { SiCoursera } from "react-icons/si"
 import { AiOutlineLogout } from 'react-icons/ai';
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
-import Cookies from "js-cookie";
-import { useRouter } from "next/navigation";
-import toast from 'react-hot-toast';
-import { server } from '@/server';
 
 
 type Props = {
