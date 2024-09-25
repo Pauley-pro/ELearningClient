@@ -93,6 +93,7 @@ export const authApi = apiSlice.injectEndpoints({
                 try {
                     await queryFulfilled;
                     dispatch(userLoggedOut());
+                    localStorage.removeItem("token");
                 } catch (error: any) {
                     console.log(error);
                 }

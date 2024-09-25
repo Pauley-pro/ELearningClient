@@ -17,9 +17,8 @@ const authSlice = createSlice({
             state.user = action.payload.user;
         },
         userLoggedOut: (state) => {
-            state.token = "";
-            state.user = "";
-            localStorage.removeItem("token");
+            state.token = initialState.token;
+            state.user = initialState.user;
         }
     }
 })
