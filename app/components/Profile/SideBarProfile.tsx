@@ -11,6 +11,7 @@ import { useRouter } from "next/navigation";
 import toast from 'react-hot-toast';
 import { server } from '@/server';
 
+
 type Props = {
   user: any;
   active: number;
@@ -19,27 +20,8 @@ type Props = {
   logOutHandler: any; 
 }
 
-const SideBarProfile:FC<Props> = ({user, active, avatar, setActive }) => {
-  const router = useRouter();
-
-  const logOutHandler = async () => {
-    try {
-      Cookies.remove("userId");
-      Cookies.remove("user_token");
-      const response = await fetch(`${server}/api/v1/logout`, {
-        method: "GET",
-      });
-
-      console.log(response.status === 200 ? "Logged Out!" : "Problem Occured!");
-      if (response.status === 200) {
-        toast.success("Logged Out Successfully!");
-        router.push("/");
-      }
-    } catch (err) {
-      console.error("Error during logout:", err);
-    }
-  };
-
+const SideBarProfile:FC<Props> = ({user, active, avatar, setActive, logOutHandler }) => {
+  
   return (
     <div className="w-full">
       <div className={`w-full flex items-center px-3 py-4 cursor-pointer ${active === 1 ? "dark:bg-slate-800 bg-white" : "bg-transparent"}`} onClick={() => setActive(1)}>
