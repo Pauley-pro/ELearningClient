@@ -8,13 +8,13 @@ export const store = configureStore({
         [apiSlice.reducerPath]: apiSlice.reducer,
         auth: authSlice,
     },
-    devTools: process.env.NODE_ENV !== 'production',
+    devTools: false,
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(apiSlice.middleware)
-});
+})
 
-// Example: Call to load the user on page load
+// call the load user function on every page load
 const initializeApp = async () => {
-    await store.dispatch(apiSlice.endpoints.loadUser.initiate({}, { forceRefetch: true }));
+    await store.dispatch(apiSlice.endpoints.loadUser.initiate({},{forceRefetch: true}));
 };
 
 initializeApp();

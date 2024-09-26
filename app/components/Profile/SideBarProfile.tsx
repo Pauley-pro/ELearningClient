@@ -13,7 +13,7 @@ type Props = {
   active: number;
   avatar: string | null;
   setActive: (active: number) => void;
-  logOutHandler: () => void;
+  logOutHandler: any;
 }
 
 const SideBarProfile:FC<Props> = ({user, active, avatar, setActive, logOutHandler }) => {
