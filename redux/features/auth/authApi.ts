@@ -86,14 +86,14 @@ export const authApi = apiSlice.injectEndpoints({
         logOut: builder.query({
             query:() => ({
                 url: "logout",
-                method: "POST",
+                method: "GET",
                 credentials: "include" as const,
             }),
             async onQueryStarted(arg, { queryFulfilled, dispatch }) {
                 try {
                     await queryFulfilled;
                     dispatch(userLoggedOut());
-                    localStorage.removeItem("token");
+                    dispatch(apiSlice.util.resetApiState());
                 } catch (error: any) {
                     console.log(error);
                 }

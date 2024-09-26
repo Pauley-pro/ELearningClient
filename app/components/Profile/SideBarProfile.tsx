@@ -13,16 +13,10 @@ type Props = {
   active: number;
   avatar: string | null;
   setActive: (active: number) => void;
-  logOutHandler: any;
+  logOutHandler: () => void;
 }
 
 const SideBarProfile:FC<Props> = ({user, active, avatar, setActive, logOutHandler }) => {
-
-  const handleLogout = () => {
-    logOutHandler();
-    // Add this line to remove the token from localStorage
-    localStorage.removeItem("token");
-  };
   
   return (
     <div className="w-full">
@@ -60,7 +54,7 @@ const SideBarProfile:FC<Props> = ({user, active, avatar, setActive, logOutHandle
           </Link>
         )
       }
-      <div className={`w-full flex items-center px-3 py-4 cursor-pointer ${active === 4 ? "dark:bg-slate-800 bg-white" : "bg-transparent"}`} onClick={handleLogout}>
+      <div className={`w-full flex items-center px-3 py-4 cursor-pointer ${active === 4 ? "dark:bg-slate-800 bg-white" : "bg-transparent"}`} onClick={() => logOutHandler()}>
         <AiOutlineLogout size={20} className="dark:text-white text-black" />
         <h5 className="pl-2 800px:block hidden font-Poppins dark:text-white text-black">
           Log Out
