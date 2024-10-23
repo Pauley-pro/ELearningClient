@@ -236,6 +236,8 @@ const CourseInformation:FC<Props> = ({courseInfo, setCourseInfo, active, setActi
             accept="image/*"
             id="file"
             className="hidden"
+            width={300}
+            height={200}
             onChange={handleFileChange}
           />
           <label htmlFor="file" className={`w-full min-h-[10vh] dark:border-white border-[#00000026] p-3 border flex items-center justify-center ${
@@ -246,7 +248,7 @@ const CourseInformation:FC<Props> = ({courseInfo, setCourseInfo, active, setActi
             onDrop={handleDrop}>
             {
               courseInfo.thumbnail ? (
-                <Image src={courseInfo.thumbnail} alt="" className="max-h-full w-full object-cover" />
+                <Image src={courseInfo.thumbnail} alt="" width={300} height={200} className="max-h-full w-full object-cover" />
               ) : (
                 <span className="text-black dark:text-white">
                   Drag and drop your thumbnail here or click to browse

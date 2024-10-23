@@ -1,4 +1,4 @@
-import React, { FC } from  "react";
+import React, { FC } from "react";
 import CoursePlayer from "../../../utils/CoursePlayer"
 import { styles } from "@/app/styles/style";
 import Ratings from "@/app/utils/Ratings";
@@ -12,7 +12,7 @@ type Props = {
     isEdit?: boolean
 }
 
-const CoursePreview:FC<Props> = ({
+const CoursePreview: FC<Props> = ({
     courseData,
     handleCourseCreate,
     setActive,
@@ -45,8 +45,8 @@ const CoursePreview:FC<Props> = ({
                         {courseData?.price === 0 ? "Free" : courseData?.price + "$"}
                     </h1>
                     <h5 className="pl-3 text-[20px] mt-2 line-through opacity-80 dark:text-white text-black">
-                        {courseData?.estimatedPrice}$    
-                    </h5> 
+                        {courseData?.estimatedPrice}$
+                    </h5>
                     <h4 className="pl-5 pt-4 text-[22px] dark:text-white text-black">
                         {discountPercentagePrice}% off
                     </h4>
@@ -57,7 +57,7 @@ const CoursePreview:FC<Props> = ({
                     </div>
                 </div>
                 <div className="flex items-center">
-                    <input 
+                    <input
                         type="text"
                         name=""
                         id=""
@@ -90,7 +90,7 @@ const CoursePreview:FC<Props> = ({
                         What you will learn from this course?
                     </h1>
                 </div>
-                {courseData?.benefits?.map((item: any, index:number) => (
+                {courseData?.benefits?.map((item: any, index: number) => (
                     <div className="w-full flex 800px:items-center py-2" key={index}>
                         <div className="w-[15px] mr-1">
                             <IoCheckmarkDoneOutline size={20} className="dark:text-white text-black" />
@@ -103,7 +103,7 @@ const CoursePreview:FC<Props> = ({
                 <h1 className="text-[25px] font-Poppins font-[600] dark:text-white text-black">
                     What are the prerequisites for starting this course?
                 </h1>
-                {courseData?.prerequisites?.map((item:any, index: number) => (
+                {courseData?.prerequisites?.map((item: any, index: number) => (
                     <div className="w-full flex 800px:items-center py-2" key={index}>
                         <div className="w-[15px] mr-1">
                             <IoCheckmarkDoneOutline size={20} className="dark:text-white text-black" />
@@ -124,6 +124,28 @@ const CoursePreview:FC<Props> = ({
                 </div>
                 <br />
                 <br />
+                <div className="w-full mt-5">
+                    <h1 className="text-[25px] font-Poppins font-[600] dark:text-white text-black">
+                        Course Questions
+                    </h1>
+                    {courseData?.questions?.map((question: any, index: number) => (
+                        <div className="w-full py-4" key={index}>
+                            <h3 className="text-[20px] font-Poppins font-[500] dark:text-white text-black">
+                                {index + 1}. {question.title}
+                            </h3>
+                            <ul className="ml-5 list-disc">
+                                {question.options?.map((option: any, optIndex: number) => (
+                                    <li
+                                        key={optIndex}
+                                        className="text-[18px] dark:text-white text-black"
+                                    >
+                                        {option}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    ))}
+                </div>
             </div>
             <div className="w-full flex items-center justify-between">
                 <div className="w-full 800px:w-[180px] flex items-center justify-center h-[40px] bg-[#37a39a] text-center text-[#fff] rounded mt-8 cursor-pointer" onClick={() => prevButton()}>

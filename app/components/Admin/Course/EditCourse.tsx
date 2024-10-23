@@ -8,20 +8,21 @@ import CoursePreview from "./CoursePreview";
 import { useEditCourseMutation, useGetAllCoursesQuery } from '@/redux/features/courses/coursesApi';
 import toast from 'react-hot-toast';
 import { redirect, useParams } from "next/navigation"
+import CourseTest from './CourseTest';
 
 type Props = {
   id: string;
 };
 
-const EditCourse:FC<Props> = ({ id }) => {
-  const [editCourse,{isSuccess, error}] = useEditCourseMutation();
+const EditCourse: FC<Props> = ({ id }) => {
+  const [editCourse, { isSuccess, error }] = useEditCourseMutation();
   const { data, refetch } = useGetAllCoursesQuery(
     {},
     { refetchOnMountOrArgChange: true }
   );
   const editCourseData = data && data.courses.find((i: any) => i._id === id);
 
-  
+
   useEffect(() => {
     if (isSuccess) {
       toast.success("Course updated successfully"),
@@ -33,7 +34,7 @@ const EditCourse:FC<Props> = ({ id }) => {
       }
     }
   }, [isSuccess, error]);
-  
+
 
 
 
@@ -83,6 +84,16 @@ const EditCourse:FC<Props> = ({ id }) => {
     ],
     suggestion: "",
   }]);
+  const [courseTestData, setCourseTestData] = useState([
+    {
+      question: '',
+      correctOption: '',
+      optionA: '',
+      optionB: '',
+      optionC: '',
+      optionD: '',
+    },
+  ]);
   const [courseData, setCourseData] = useState({});
   const handleSubmit = async () => {
     // format benefits array 
@@ -101,6 +112,14 @@ const EditCourse:FC<Props> = ({ id }) => {
       })),
       suggestion: courseContent.suggestion,
     }));
+    const formattedCourseTestData = courseTestData.map((test) => ({
+      question: test.question,
+      correctOption: test.correctOption,
+      optionA: test.optionA,
+      optionB: test.optionB,
+      optionC: test.optionC,
+      optionD: test.optionD,
+    }));
     // prepare our data object
     const data = {
       name: courseInfo.name,
@@ -114,13 +133,14 @@ const EditCourse:FC<Props> = ({ id }) => {
       totalVideos: courseContentData.length,
       benefits: formattedBenefits,
       prerequisites: formattedPrerequisites,
+      questions: formattedCourseTestData,
       courseData: formattedCourseContentData,
     };
     setCourseData(data);
   };
   const handleCourseCreate = async (e: any) => {
     const data = courseData;
-    await editCourse({id:editCourseData?._id,data});
+    await editCourse({ id: editCourseData?._id, data });
   }
 
   return (
@@ -164,6 +184,17 @@ const EditCourse:FC<Props> = ({ id }) => {
 
         {
           active === 3 && (
+            <CourseTest
+              active={active}
+              setActive={setActive}
+              courseTestData={courseTestData}
+              setCourseTestData={setCourseTestData}
+            />
+          )
+        }
+
+        {
+          active === 4 && (
             <CoursePreview
               active={active}
               setActive={setActive}

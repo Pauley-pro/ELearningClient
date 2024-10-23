@@ -108,7 +108,10 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
                                                 <Link href={"/profile"}>
                                                     <Image
                                                         src={userData?.user.avatar ? userData.user.avatar.url : avatar}
-                                                        alt="" width={30} height={30} className="w-[30px] h-[30px] rounded-full cursor-pointer"
+                                                        alt="" 
+                                                        width={30} 
+                                                        height={30} 
+                                                        className="w-[30px] h-[30px] rounded-full cursor-pointer"
                                                         style={{ border: activeItem === 5 ? "2px solid #37a39a" : "none" }}
                                                     />
                                                 </Link>
@@ -196,7 +199,13 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
                                 <>
                                     {
                                         open && (
-                                            <CustomModal open={open} setOpen={setOpen} setRoute={setRoute} activeItem={activeItem} component={Signup} />
+                                            <CustomModal
+                                                open={open}
+                                                setOpen={setOpen}
+                                                setRoute={setRoute}
+                                                activeItem={activeItem}
+                                                component={Signup}
+                                            />
                                         )
                                     }
                                 </>
@@ -207,7 +216,13 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
                                 <>
                                     {
                                         open && (
-                                            <CustomModal open={open} setOpen={setOpen} setRoute={setRoute} activeItem={activeItem} component={Verification} />
+                                            <CustomModal
+                                                open={open}
+                                                setOpen={setOpen}
+                                                setRoute={setRoute}
+                                                activeItem={activeItem}
+                                                component={Verification}
+                                            />
                                         )
                                     }
                                 </>

@@ -11,6 +11,7 @@ const CourseOptions: FC<Props> = ({ active, setActive }) => {
         "Course Information",
         "Course Options",
         "Course Content",
+        "Course Test",
         "Course Preview",
     ];
     return (
