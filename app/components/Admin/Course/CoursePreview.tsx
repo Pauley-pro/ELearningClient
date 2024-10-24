@@ -4,21 +4,33 @@ import { styles } from "@/app/styles/style";
 import Ratings from "@/app/utils/Ratings";
 import { IoCheckmarkDoneOutline } from "react-icons/io5"
 
+type Question = {
+    question: string;
+    correctOption: string; // or number
+    optionA: string;
+    optionB: string;
+    optionC: string;
+    optionD: string;
+};
+
 type Props = {
     active: number;
     setActive: (active: number) => void;
     courseData: any;
     handleCourseCreate: any;
+    courseTestData: Question[];
     isEdit?: boolean
 }
 
 const CoursePreview: FC<Props> = ({
     courseData,
     handleCourseCreate,
+    courseTestData,
     setActive,
     active,
     isEdit
 }) => {
+    console.log(courseData);
     const discountPercentage = ((courseData?.estimatedPrice - courseData?.price) / courseData?.estimatedPrice) * 100;
 
     const discountPercentagePrice = discountPercentage.toFixed(0);
@@ -128,23 +140,16 @@ const CoursePreview: FC<Props> = ({
                     <h1 className="text-[25px] font-Poppins font-[600] dark:text-white text-black">
                         Course Questions
                     </h1>
-                    {courseData?.questions?.map((question: any, index: number) => (
-                        <div className="w-full py-4" key={index}>
-                            <h3 className="text-[20px] font-Poppins font-[500] dark:text-white text-black">
-                                {index + 1}. {question.title}
-                            </h3>
-                            <ul className="ml-5 list-disc">
-                                {question.options?.map((option: any, optIndex: number) => (
-                                    <li
-                                        key={optIndex}
-                                        className="text-[18px] dark:text-white text-black"
-                                    >
-                                        {option}
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    ))}
+                    {courseTestData.map((question, index) => (
+                            <div key={index} className="mb-2">
+                                <p className="dark:text-[#ffffff]"><strong>Question {index + 1}:</strong> {question.question}</p>
+                                <p className="dark:text-[#ffffff]"><strong>Correct Option:</strong> {question.correctOption}</p>
+                                <p className="dark:text-[#ffffff]"><strong>Option A:</strong> {question.optionA}</p>
+                                <p className="dark:text-[#ffffff]"><strong>Option B:</strong> {question.optionB}</p>
+                                <p className="dark:text-[#ffffff]"><strong>Option C:</strong> {question.optionC}</p>
+                                <p className="dark:text-[#ffffff]"><strong>Option D:</strong> {question.optionD}</p>
+                            </div>
+                        ))}
                 </div>
             </div>
             <div className="w-full flex items-center justify-between">

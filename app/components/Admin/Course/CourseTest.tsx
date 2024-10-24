@@ -66,9 +66,9 @@ const CourseTest: FC<Props> = ({ courseTestData, setCourseTestData, active, setA
     };
 
     const handleInputChange = (index: number, field: keyof Question, value: string) => {
-        const updatedQuestions = [...courseTestData];
-        updatedQuestions[index][field] = value;
-        setCourseTestData(updatedQuestions);
+        const updatedQuestions = [...courseTestData]; // Copy the current state
+        updatedQuestions[index] = { ...updatedQuestions[index], [field]: value }; // Spread and update only the field being changed
+        setCourseTestData(updatedQuestions); // Set the updated state
     };
 
     return (

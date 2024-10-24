@@ -78,7 +78,7 @@ const CourseData: FC<Props> = ({ benefits, setBenefits, prerequisites, setPrereq
                 </label>
                 <br />
                 {
-                    prerequisites.map((prerequisites: any, index: number) => (
+                    prerequisites.map((prerequisite: any, index: number) => (
                         <input
                             type="text"
                             key={index}
@@ -86,7 +86,7 @@ const CourseData: FC<Props> = ({ benefits, setBenefits, prerequisites, setPrereq
                             placeholder="You need the basic knowledge of MERN stack"
                             required
                             className={`${styles.input} my-2`}
-                            value={prerequisites.title}
+                            value={prerequisite.title}
                             onChange={(e) => handlePrerequisitesChange(index, e.target.value)}
                         />
                     ))
