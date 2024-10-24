@@ -199,6 +199,7 @@ const EditCourse: FC<Props> = ({ id }) => {
               active={active}
               setActive={setActive}
               courseData={courseData}
+              courseTestData={courseTestData}
               handleCourseCreate={handleCourseCreate}
               isEdit={true}
             />
