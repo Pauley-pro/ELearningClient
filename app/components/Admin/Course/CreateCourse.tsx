@@ -111,7 +111,7 @@ const CreateCourse = (props: Props) => {
             benefits: formattedBenefits,
             prerequisites: formattedPrerequisites,
             courseData: formattedCourseContentData,
-            courseTestData: formattedCourseTestData,
+            courseTestData: courseTestData,
         };
         setCourseData(data);
     };
