@@ -87,14 +87,6 @@ const CreateCourse = (props: Props) => {
             })),
             suggestion: courseContent.suggestion,
         }));
-        const formattedCourseTestData = courseTestData.map((testData) => ({
-            question: testData.question,
-            correctOption: testData.correctOption,
-            optionA: testData.optionA,
-            optionB: testData.optionB,
-            optionC: testData.optionC,
-            optionD: testData.optionD,
-        }));
         
         // prepare our data object
         const data = {
@@ -111,7 +103,14 @@ const CreateCourse = (props: Props) => {
             benefits: formattedBenefits,
             prerequisites: formattedPrerequisites,
             courseData: formattedCourseContentData,
-            courseTestData: courseTestData,
+            courseTestData: courseTestData.map((test) => ({
+                question: test.question,
+                correctOption: test.correctOption,
+                optionA: test.optionA,
+                optionB: test.optionB,
+                optionC: test.optionC,
+                optionD: test.optionD,
+            })),
         };
         setCourseData(data);
     };
