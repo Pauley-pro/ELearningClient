@@ -69,7 +69,7 @@ const CreateCourse = (props: Props) => {
     console.log(courseTestData)
     const [courseData, setCourseData] = useState({});
     console.log(courseData)
-    const handleSubmit = async () => {
+    /*const handleSubmit = async () => {
         // format benefits array 
         const formattedBenefits = benefits.map((benefit) => ({ title: benefit.title }));
         // format prerequisite array
@@ -113,15 +113,73 @@ const CreateCourse = (props: Props) => {
             })),
         };
         setCourseData(data);
+    };*/
+    const handleSubmit = () => {
+        // format benefits array 
+        const formattedBenefits = benefits.map((benefit) => ({ title: benefit.title }));
+        // format prerequisite array
+        const formattedPrerequisites = prerequisites.map((prerequisite) => ({ title: prerequisite.title }));
+        // format course content array
+        const formattedCourseContentData = courseContentData.map((courseContent) => ({
+            videoUrl: courseContent.videoUrl,
+            title: courseContent.title,
+            description: courseContent.description,
+            videoLength: courseContent.videoLength,
+            videoSection: courseContent.videoSection,
+            links: courseContent.links.map((link) => ({
+                title: link.title,
+                url: link.url,
+            })),
+            suggestion: courseContent.suggestion,
+        }));
+        
+        // Prepare the final data object
+        const data = {
+            name: courseInfo.name,
+            description: courseInfo.description,
+            categories: courseInfo.categories,
+            price: courseInfo.price,
+            estimatedPrice: courseInfo.estimatedPrice,
+            tags: courseInfo.tags,
+            thumbnail: courseInfo.thumbnail,
+            level: courseInfo.level,
+            demoUrl: courseInfo.demoUrl,
+            totalVideos: courseContentData.length,
+            benefits: formattedBenefits,
+            prerequisites: formattedPrerequisites,
+            courseData: formattedCourseContentData,
+            courseTestData: courseTestData.map((test) => ({
+                question: test.question,
+                correctOption: test.correctOption,
+                optionA: test.optionA,
+                optionB: test.optionB,
+                optionC: test.optionC,
+                optionD: test.optionD,
+            })),
+        };
+
+        setCourseData(data);
+    };
+
+    const handleCourseCreate = async (e: any) => {
+        e.preventDefault();
+        
+        // First prepare the data
+        handleSubmit();
+        
+        // Then submit the data if not loading
+        if (!isLoading) {
+            await createCourse(courseData);
+        }
     };
     
-    const handleCourseCreate = async (e: any) => {
+    /*const handleCourseCreate = async (e: any) => {
         const data = courseData;
 
         if (!isLoading) {
             await createCourse(data);
         }
-    }
+    }*/
 
     return (
         <div className="w-full flex min-h-screen">
