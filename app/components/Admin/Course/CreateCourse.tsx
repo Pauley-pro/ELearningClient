@@ -87,14 +87,15 @@ const CreateCourse = (props: Props) => {
             })),
             suggestion: courseContent.suggestion,
         }));
-        const formattedCourseTestData = courseTestData.map((test) => ({
-            question: test.question,
-            correctOption: test.correctOption,
-            optionA: test.optionA,
-            optionB: test.optionB,
-            optionC: test.optionC,
-            optionD: test.optionD,
+        const formattedCourseTestData = courseTestData.map((testData) => ({
+            question: testData.question,
+            correctOption: testData.correctOption,
+            optionA: testData.optionA,
+            optionB: testData.optionB,
+            optionC: testData.optionC,
+            optionD: testData.optionD,
         }));
+        
         // prepare our data object
         const data = {
             name: courseInfo.name,
@@ -109,8 +110,8 @@ const CreateCourse = (props: Props) => {
             totalVideos: courseContentData.length,
             benefits: formattedBenefits,
             prerequisites: formattedPrerequisites,
-            questions: formattedCourseTestData,
             courseData: formattedCourseContentData,
+            courseTestData: formattedCourseTestData,
         };
         setCourseData(data);
     };
@@ -179,7 +180,6 @@ const CreateCourse = (props: Props) => {
                             active={active}
                             setActive={setActive}
                             courseData={courseData}
-                            courseTestData={courseTestData}
                             handleCourseCreate={handleCourseCreate}
                         />
                     )

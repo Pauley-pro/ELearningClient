@@ -18,14 +18,12 @@ type Props = {
     setActive: (active: number) => void;
     courseData: any;
     handleCourseCreate: any;
-    courseTestData: Question[];
     isEdit?: boolean
 }
 
 const CoursePreview: FC<Props> = ({
     courseData,
     handleCourseCreate,
-    courseTestData,
     setActive,
     active,
     isEdit
@@ -140,16 +138,18 @@ const CoursePreview: FC<Props> = ({
                     <h1 className="text-[25px] font-Poppins font-[600] dark:text-white text-black">
                         Course Questions
                     </h1>
-                    {courseTestData.map((question, index) => (
-                            <div key={index} className="mb-2">
-                                <p className="dark:text-[#ffffff]"><strong>Question {index + 1}:</strong> {question.question}</p>
-                                <p className="dark:text-[#ffffff]"><strong>Correct Option:</strong> {question.correctOption}</p>
-                                <p className="dark:text-[#ffffff]"><strong>Option A:</strong> {question.optionA}</p>
-                                <p className="dark:text-[#ffffff]"><strong>Option B:</strong> {question.optionB}</p>
-                                <p className="dark:text-[#ffffff]"><strong>Option C:</strong> {question.optionC}</p>
-                                <p className="dark:text-[#ffffff]"><strong>Option D:</strong> {question.optionD}</p>
-                            </div>
-                        ))}
+                    {courseData?.courseTestData?.map((test: any, index: number) => (
+                    <div key={index} className="my-4">
+                        <h2 className="dark:text-white text-black">{index + 1}. {test.question}</h2>
+                        <ul>
+                            <li className="dark:text-white text-black">A: {test.optionA}</li>
+                            <li className="dark:text-white text-black">B: {test.optionB}</li>
+                            <li className="dark:text-white text-black">C: {test.optionC}</li>
+                            <li className="dark:text-white text-black">D: {test.optionD}</li>
+                        </ul>
+                        <p className="dark:text-white text-black">Correct Answer: {test.correctOption}</p>
+                    </div>
+                ))}
                 </div>
             </div>
             <div className="w-full flex items-center justify-between">
