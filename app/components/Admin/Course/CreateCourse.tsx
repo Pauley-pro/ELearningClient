@@ -66,10 +66,10 @@ const CreateCourse = (props: Props) => {
             optionD: '',
         },
     ]);
-    console.log(courseTestData)
+    console.log("The test questions are as follows:", courseTestData);
+
     const [courseData, setCourseData] = useState({});
     console.log(courseData)
-    
     const handleSubmit = async () => {
         // format benefits array 
         const formattedBenefits = benefits.map((benefit) => ({ title: benefit.title }));
@@ -88,7 +88,7 @@ const CreateCourse = (props: Props) => {
             })),
             suggestion: courseContent.suggestion,
         }));
-        
+
         // prepare our data object
         const data = {
             name: courseInfo.name,
@@ -104,18 +104,11 @@ const CreateCourse = (props: Props) => {
             benefits: formattedBenefits,
             prerequisites: formattedPrerequisites,
             courseData: formattedCourseContentData,
-            courseTestData: courseTestData.map((test) => ({
-                question: test.question,
-                correctOption: test.correctOption,
-                optionA: test.optionA,
-                optionB: test.optionB,
-                optionC: test.optionC,
-                optionD: test.optionD,
-            })),
+            courseTestData,
         };
         setCourseData(data);
     };
-    
+
     const handleCourseCreate = async (e: any) => {
         const data = courseData;
 
@@ -170,6 +163,7 @@ const CreateCourse = (props: Props) => {
                             setActive={setActive}
                             courseTestData={courseTestData}
                             setCourseTestData={setCourseTestData}
+                            handleSubmit={handleSubmit}
                         />
                     )
                 }

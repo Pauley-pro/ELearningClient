@@ -94,6 +94,8 @@ const EditCourse: FC<Props> = ({ id }) => {
       optionD: '',
     },
   ]);
+  console.log("The updated test questions are as follows:", courseTestData);
+  
   const [courseData, setCourseData] = useState({});
   const handleSubmit = async () => {
     // format benefits array 
@@ -112,14 +114,7 @@ const EditCourse: FC<Props> = ({ id }) => {
       })),
       suggestion: courseContent.suggestion,
     }));
-    const formattedCourseTestData = courseTestData.map((test) => ({
-      question: test.question,
-      correctOption: test.correctOption,
-      optionA: test.optionA,
-      optionB: test.optionB,
-      optionC: test.optionC,
-      optionD: test.optionD,
-    }));
+
     // prepare our data object
     const data = {
       name: courseInfo.name,
@@ -133,8 +128,8 @@ const EditCourse: FC<Props> = ({ id }) => {
       totalVideos: courseContentData.length,
       benefits: formattedBenefits,
       prerequisites: formattedPrerequisites,
-      questions: formattedCourseTestData,
       courseData: formattedCourseContentData,
+      courseTestData
     };
     setCourseData(data);
   };
@@ -189,6 +184,7 @@ const EditCourse: FC<Props> = ({ id }) => {
               setActive={setActive}
               courseTestData={courseTestData}
               setCourseTestData={setCourseTestData}
+              handleSubmit={handleSubmit}
             />
           )
         }
