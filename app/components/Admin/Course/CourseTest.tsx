@@ -81,7 +81,7 @@ const CourseTest: FC<Props> = ({
         setCourseTestData(updatedQuestions);
     };
 
-    const handleInputChange = (index: number, field: keyof Question, value: string) => {
+    const handleInputChange = (index: number, field: keyof Question, value: any) => {
         const updatedQuestions = [...courseTestData];
         updatedQuestions[index] = { ...updatedQuestions[index], [field]: value }; 
         setCourseTestData(updatedQuestions); 
@@ -98,14 +98,14 @@ const CourseTest: FC<Props> = ({
                                 type="text"
                                 required
                                 value={question.question}
-                                onChange={(e) => {
+                                /*onChange={(e) => {
                                     const updatedQuestions = [...courseTestData];
                                     updatedQuestions[index].question = e.target.value;
                                     setCourseTestData(updatedQuestions);
-                                }}
-                                /*onChange={(e: any) =>
+                                }}*/
+                                onChange={(e: any) =>
                                     handleInputChange(index, 'question', e.target.value)
-                                }*/
+                                }
                                 placeholder="Enter question"
                                 className={`${styles.input}`}
                             />
@@ -117,14 +117,14 @@ const CourseTest: FC<Props> = ({
                                 type="text"
                                 required
                                 value={question.correctOption}
-                                onChange={(e) => {
+                                /*onChange={(e) => {
                                     const updatedQuestions = [...courseTestData];
                                     updatedQuestions[index].correctOption = e.target.value;
                                     setCourseTestData(updatedQuestions);
-                                }}
-                                /*onChange={(e: any) =>
+                                }}*/
+                                onChange={(e: any) =>
                                     handleInputChange(index, 'correctOption', e.target.value)
-                                }*/
+                                }
                                 placeholder="Correct option"
                                 className={`${styles.input}`}
                             />
@@ -137,14 +137,14 @@ const CourseTest: FC<Props> = ({
                                     type="text"
                                     required
                                     value={question.optionA}
-                                    onChange={(e) => {
+                                    /*onChange={(e) => {
                                         const updatedQuestions = [...courseTestData];
                                         updatedQuestions[index].optionA = e.target.value;
                                         setCourseTestData(updatedQuestions);
-                                    }}
-                                    /*onChange={(e: any) =>
+                                    }}*/
+                                    onChange={(e: any) =>
                                         handleInputChange(index, 'optionA', e.target.value)
-                                    }*/
+                                    }
                                     placeholder="Option A"
                                     className={`${styles.input}`}
                                 />
@@ -155,14 +155,14 @@ const CourseTest: FC<Props> = ({
                                     type="text"
                                     required
                                     value={question.optionB}
-                                    onChange={(e) => {
+                                    /*onChange={(e) => {
                                         const updatedQuestions = [...courseTestData];
                                         updatedQuestions[index].optionB = e.target.value;
                                         setCourseTestData(updatedQuestions);
-                                    }}
-                                    /*onChange={(e: any) =>
+                                    }}*/
+                                    onChange={(e: any) =>
                                         handleInputChange(index, 'optionB', e.target.value)
-                                    }*/
+                                    }
                                     placeholder="Option B"
                                     className={`${styles.input}`}
                                 />
@@ -176,14 +176,14 @@ const CourseTest: FC<Props> = ({
                                     type="text"
                                     required
                                     value={question.optionC}
-                                    onChange={(e) => {
+                                    /*onChange={(e) => {
                                         const updatedQuestions = [...courseTestData];
                                         updatedQuestions[index].optionC = e.target.value;
                                         setCourseTestData(updatedQuestions);
-                                    }}
-                                    /*onChange={(e: any) =>
+                                    }}*/
+                                    onChange={(e: any) =>
                                         handleInputChange(index, 'optionC', e.target.value)
-                                    }*/
+                                    }
                                     placeholder="Option C"
                                     className={`${styles.input}`}
                                 />
@@ -194,14 +194,14 @@ const CourseTest: FC<Props> = ({
                                     type="text"
                                     required
                                     value={question.optionD}
-                                    onChange={(e) => {
+                                    /*onChange={(e) => {
                                         const updatedQuestions = [...courseTestData];
                                         updatedQuestions[index].optionD = e.target.value;
                                         setCourseTestData(updatedQuestions);
-                                    }}
-                                    /*onChange={(e: any) =>
+                                    }}*/
+                                    onChange={(e: any) =>
                                         handleInputChange(index, 'optionD', e.target.value)
-                                    }*/
+                                    }
                                     placeholder="Option D"
                                     className={`${styles.input}`}
                                 />

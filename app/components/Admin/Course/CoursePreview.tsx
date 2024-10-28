@@ -140,14 +140,14 @@ const CoursePreview: FC<Props> = ({
                     </h1>
                     {courseData?.courseTestData?.map((test: any, index: number) => (
                     <div key={index} className="my-4">
-                        <h2 className="dark:text-white text-black">{index + 1}. {test.question}</h2>
+                        <h2 className="dark:text-white text-black text-[20px]">{index + 1}. {test.question}</h2>
                         <ul>
                             <li className="dark:text-white text-black">A: {test.optionA}</li>
                             <li className="dark:text-white text-black">B: {test.optionB}</li>
                             <li className="dark:text-white text-black">C: {test.optionC}</li>
                             <li className="dark:text-white text-black">D: {test.optionD}</li>
                         </ul>
-                        <p className="dark:text-white text-black">Correct Answer: {test.correctOption}</p>
+                        <p className="text-[#FF0000]">Correct Answer: {test.correctOption}</p>
                     </div>
                 ))}
                 </div>

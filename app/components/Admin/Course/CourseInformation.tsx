@@ -1,7 +1,7 @@
 import { styles } from '@/app/styles/style';
 import { useGetHeroDataQuery } from '@/redux/features/layout/layoutApi';
 import Image from 'next/image';
-import React,{ FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 
 type Props = {
   courseInfo: any;
@@ -10,27 +10,28 @@ type Props = {
   setActive: (active: number) => void;
 }
 
-const CourseInformation:FC<Props> = ({courseInfo, setCourseInfo, active, setActive}) => {
+const CourseInformation: FC<Props> = ({ courseInfo, setCourseInfo, active, setActive }) => {
   const [dragging, setDragging] = useState(false);
   const { data } = useGetHeroDataQuery("Categories", {});
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    if (data){
+    if (data) {
       setCategories(data.layout.categories);
-    }}
+    }
+  }
     , [data])
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
     setActive(active + 1);
   };
-  const handleFileChange = (e:any) => {
+  const handleFileChange = (e: any) => {
     const file = e.target.files?.[0];
     if (file) {
       const reader = new FileReader();
-      reader.onload = (e:any) => {
-        if(reader.readyState === 2){
+      reader.onload = (e: any) => {
+        if (reader.readyState === 2) {
           setCourseInfo({ ...courseInfo, thumbnail: reader.result });
         }
       };
@@ -38,17 +39,17 @@ const CourseInformation:FC<Props> = ({courseInfo, setCourseInfo, active, setActi
     }
   }
 
-  const handleDragOver = (e:any) => {
+  const handleDragOver = (e: any) => {
     e.preventDefault();
     setDragging(true);
   }
 
-  const handleDragLeave = (e:any) => {
+  const handleDragLeave = (e: any) => {
     e.preventDefault();
     setDragging(false);
   };
 
-  const handleDrop = (e:any) => {
+  const handleDrop = (e: any) => {
     e.preventDefault();
     setDragging(false);
 
@@ -62,7 +63,7 @@ const CourseInformation:FC<Props> = ({courseInfo, setCourseInfo, active, setActi
       reader.readAsDataURL(file);
     }
   };
-  
+
 
 
   return (
@@ -77,9 +78,9 @@ const CourseInformation:FC<Props> = ({courseInfo, setCourseInfo, active, setActi
             name=""
             required
             value={courseInfo.name}
-              onChange={(e: any) =>
-                setCourseInfo({ ...courseInfo, name: e.target.value })
-              }
+            onChange={(e: any) =>
+              setCourseInfo({ ...courseInfo, name: e.target.value })
+            }
             id="name"
             placeholder="MERN stack LMS platform with next 13"
             className={`${styles.input}`}
@@ -88,15 +89,15 @@ const CourseInformation:FC<Props> = ({courseInfo, setCourseInfo, active, setActi
         <br />
         <div className="mb-5">
           <label className={`${styles.label}`}>Course Description</label>
-          <textarea 
-            name="" 
-            id="" 
-            cols={30} 
-            rows={8} 
-            placeholder="Write something amazing..." 
+          <textarea
+            name=""
+            id=""
+            cols={30}
+            rows={8}
+            placeholder="Write something amazing..."
             className={`${styles.input} !h-min !py-2`}
             value={courseInfo.description}
-            onChange={(e:any) => setCourseInfo({ ...courseInfo, description: e.target.value })}>
+            onChange={(e: any) => setCourseInfo({ ...courseInfo, description: e.target.value })}>
           </textarea>
         </div>
         <br />
@@ -110,9 +111,9 @@ const CourseInformation:FC<Props> = ({courseInfo, setCourseInfo, active, setActi
               name=""
               required
               value={courseInfo.price}
-                onChange={(e: any) =>
-                  setCourseInfo({ ...courseInfo, price: e.target.value })
-                }
+              onChange={(e: any) =>
+                setCourseInfo({ ...courseInfo, price: e.target.value })
+              }
               id="price"
               placeholder="29"
               className={`${styles.input}`}
@@ -125,11 +126,11 @@ const CourseInformation:FC<Props> = ({courseInfo, setCourseInfo, active, setActi
             <input
               type="number"
               name=""
-              required
+              // required
               value={courseInfo.estimatedprice}
-                onChange={(e: any) =>
-                  setCourseInfo({ ...courseInfo, estimatedPrice: e.target.value })
-                }
+              onChange={(e: any) =>
+                setCourseInfo({ ...courseInfo, estimatedPrice: e.target.value })
+              }
               id="price"
               placeholder="79"
               className={`${styles.input}`}
@@ -140,31 +141,31 @@ const CourseInformation:FC<Props> = ({courseInfo, setCourseInfo, active, setActi
         <div className="w-full flex justify-between">
           <div className="w-[45%]">
             <label className={`${styles.label}`} htmlFor="email">
-            Course Tags
-          </label>
-          <input
-            type="text"
-            name=""
-            required
-            value={courseInfo.tags}
-            onChange={(e: any) =>
-              setCourseInfo({ ...courseInfo, tags: e.target.value })
-            }
-            id="tags"
-            placeholder="MERN, Next 13, Socket io, tailwind css, LMS"
-            className={`${styles.input}`}
-          />
+              Course Tags
+            </label>
+            <input
+              type="text"
+              name=""
+              required
+              value={courseInfo.tags}
+              onChange={(e: any) =>
+                setCourseInfo({ ...courseInfo, tags: e.target.value })
+              }
+              id="tags"
+              placeholder="MERN, Next 13, Socket io, tailwind css, LMS"
+              className={`${styles.input}`}
+            />
           </div>
           <div className="w-[50%]">
             <label className={`${styles.label} w-50%`}>
               Course Categories
             </label>
-            <select 
-              name="" 
-              id="" 
+            <select
+              name=""
+              id=""
               className={`${styles.input}`}
               value={courseInfo.category}
-              onChange={(e:any) => setCourseInfo({ ...courseInfo, categories: e.target.value })}
+              onChange={(e: any) => setCourseInfo({ ...courseInfo, categories: e.target.value })}
             >
               <option value="" id="">Select Category</option>
               {categories.map((item: any) => (
@@ -203,9 +204,9 @@ const CourseInformation:FC<Props> = ({courseInfo, setCourseInfo, active, setActi
               name=""
               required
               value={courseInfo.level}
-                onChange={(e: any) =>
-                  setCourseInfo({ ...courseInfo, level: e.target.value })
-                }
+              onChange={(e: any) =>
+                setCourseInfo({ ...courseInfo, level: e.target.value })
+              }
               id="level"
               placeholder="Beginner/Intermediate"
               className={`${styles.input}`}
@@ -240,11 +241,10 @@ const CourseInformation:FC<Props> = ({courseInfo, setCourseInfo, active, setActi
             height={200}
             onChange={handleFileChange}
           />
-          <label htmlFor="file" className={`w-full min-h-[10vh] dark:border-white border-[#00000026] p-3 border flex items-center justify-center ${
-            dragging ? "bg-blue-500" : "bg-transparent"
-            }`} 
-            onDragOver={handleDragOver} 
-            onDragLeave={handleDragLeave} 
+          <label htmlFor="file" className={`w-full min-h-[10vh] dark:border-white border-[#00000026] p-3 border flex items-center justify-center ${dragging ? "bg-blue-500" : "bg-transparent"
+            }`}
+            onDragOver={handleDragOver}
+            onDragLeave={handleDragLeave}
             onDrop={handleDrop}>
             {
               courseInfo.thumbnail ? (
@@ -259,7 +259,7 @@ const CourseInformation:FC<Props> = ({courseInfo, setCourseInfo, active, setActi
         </div>
         <br />
         <div className="w-full flex items-center justify-end">
-          <input 
+          <input
             type="submit"
             value="Next"
             className="w-full 800px:w-[180px] h-[40px] bg-[#37a39a] text-center text-[#fff] rounded mt-8 cursor-pointer"

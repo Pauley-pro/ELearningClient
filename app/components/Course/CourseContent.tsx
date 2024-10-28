@@ -5,6 +5,7 @@ import Heading from '@/app/utils/Heading';
 import CourseContentMedia from "./CourseContentMedia";
 import Header from '../Header';
 import CourseContentList from './CourseContentList';
+import CourseTest from './CourseTest';
 
 type Props = {
     id: string;
@@ -48,6 +49,7 @@ const CourseContent = ({ id, user }: Props) => {
                                     refetch={refetch}
                                 />
                             </div>
+                            
                             <div className="hidden 800px:block 800px:col-span-3">
                                 <CourseContentList
                                     setActiveVideo={setActiveVideo}

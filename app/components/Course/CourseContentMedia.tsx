@@ -10,6 +10,7 @@ import { BiMessage } from 'react-icons/bi';
 import { VscVerifiedFilled } from 'react-icons/vsc';
 import Ratings from '@/app/utils/Ratings';
 import socketIO from "socket.io-client";
+import { useRouter } from 'next/navigation';
 const ENDPOINT = process.env.NEXT_PUBLIC_SOCKET_SERVER_URI || "";
 const socketId = socketIO(ENDPOINT, { transports: ["websocket"] });
 
@@ -23,6 +24,7 @@ type Props = {
 }
 
 const CourseContentMedia = ({ data, id, activeVideo, setActiveVideo, user, refetch }: Props) => {
+    const router = useRouter();
     const [activeBar, setActiveBar] = useState(0);
     const [question, setQuestion] = useState('');
     const [review, setReview] = useState("");
@@ -153,13 +155,40 @@ const CourseContentMedia = ({ data, id, activeVideo, setActiveVideo, user, refet
                     <AiOutlineArrowLeft className="mr-2" />
                     Prev Lesson
                 </div>
-                <div
+                <div>
+                    {activeVideo < data.length - 1 ? (
+                        // Show "Next Lesson" button when there are more lessons ahead
+                        <div
+                            className={`${styles.button} !w-[unset] !min-h-[40px] !py-[unset] ${data.length - 1 === activeVideo && "!cursor-no-drop opacity-[.8]"
+                                }`}
+                            onClick={() =>
+                                setActiveVideo(
+                                    data && data.length - 1 === activeVideo ? activeVideo : activeVideo + 1
+                                )
+                            }
+                        >
+                            Next Lesson
+                            <AiOutlineArrowRight className="mr-2" />
+                        </div>
+                    ) : (
+                        // Show "Take Test" button when there are no more lessons ahead
+                        <div
+                            className={`${styles.button} !w-[unset] !min-h-[40px] !py-[unset]`}
+                            onClick={() => router.push("/taketest")}
+                        >
+                            Take Test
+                            <AiOutlineArrowRight className="mr-2" />
+                        </div>
+                    )}
+                </div>
+
+                {/*<div
                     className={`${styles.button} !w-[unset] !min-h-[40px] !py-[unset] ${data.length - 1 === activeVideo && "!cursor-no-drop opacity-[.8]"}`}
                     onClick={() => setActiveVideo(data && data.length - 1 === activeVideo ? activeVideo : activeVideo + 1)}
                 >
                     Next Lesson
                     <AiOutlineArrowRight className="mr-2" />
-                </div>
+                </div>*/}
             </div>
             <h1 className="pt-2 text-[25px] dark:text-[#fff] text-black font-[600]">{data[activeVideo].title}</h1>
             <br />

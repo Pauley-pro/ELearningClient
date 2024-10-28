@@ -54,6 +54,7 @@ const EditCourse: FC<Props> = ({ id }) => {
       setBenefits(editCourseData.benefits);
       setPrerequisites(editCourseData.prerequisites);
       setCourseContentData(editCourseData.courseData);
+      setCourseTestData(editCourseData.courseTestData);
     }
   }, [editCourseData]);
 
@@ -84,6 +85,7 @@ const EditCourse: FC<Props> = ({ id }) => {
     ],
     suggestion: "",
   }]);
+  // const [courseTestData, setCourseTestData] = useState([]);
   const [courseTestData, setCourseTestData] = useState([
     {
       question: '',
