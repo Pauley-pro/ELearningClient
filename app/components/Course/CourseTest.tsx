@@ -1,6 +1,7 @@
-import Heading from '@/app/utils/Heading';
+import React, { useState } from 'react';
+import { useGetCourseDetailsQuery } from '@/redux/features/courses/coursesApi';
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import toast from 'react-hot-toast';
 
 interface CourseTestData {
   question: string;
@@ -17,91 +18,107 @@ interface Props {
 }
 
 const CourseTest = ({ id, user }: Props) => {
-  const [courseTestData, setCourseTestData] = useState<CourseTestData[]>([]);
+  const { data: courseTestData } = useGetCourseDetailsQuery(id, { refetchOnMountOrArgChange: true });
+  const course = courseTestData?.course;
 
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [selectedOptions, setSelectedOptions] = useState<string[]>(Array(course?.courseTestData?.length || 0).fill(''));
 
-  useEffect(() => {
-    const fetchCourseTestData = async () => {
-      try {
-        const response = await axios.get(`http://localhost:8000/api/v1/get-course-content/${id}`);
-        const fetchedCourseTestData = response.data.courseTestData || [];
-        setCourseTestData(fetchedCourseTestData);
+  // Handle option selection
+  const handleOptionChange = (option: string) => {
+    const updatedSelections = [...selectedOptions];
+    updatedSelections[currentQuestion] = option;
+    setSelectedOptions(updatedSelections);
+  };
 
-        // Console log the fetched courseTestData
-        console.log("Fetched Course Test Data:", fetchedCourseTestData);
-      } catch (error) {
-        console.error("Error fetching course test data:", error);
+  // Navigate to next or previous question
+  const nextQuestion = () => {
+    if (currentQuestion < (course?.courseTestData.length || 0) - 1) {
+      setCurrentQuestion(currentQuestion + 1);
+    }
+  };
+
+  const prevQuestion = () => {
+    if (currentQuestion > 0) {
+      setCurrentQuestion(currentQuestion - 1);
+    }
+  };
+
+  // Submit test answers
+  const handleSubmit = async () => {
+    try {
+      const response = await axios.post('http://localhost:8000/api/v1/evaluate-test', {
+        courseId: id,
+        userAnswers: selectedOptions,
+      });
+
+      toast.success(response.data.message);
+
+      if (!response.data.passed) {
+        // Reset the test if the user didn't pass
+        setSelectedOptions(Array(course.courseTestData.length).fill(''));
+        setCurrentQuestion(0);
+      } else {
+        // Handle successful submission (e.g., navigate to certificate page)
       }
-    };
+    } catch (error) {
+      console.error("Error submitting test:", error);
+      toast.error("There was an error submitting the test. Please try again.");
+    }
+  };
 
-    fetchCourseTestData();
-  }, [id]);
+  // Ensure the question is defined
+  const question = course?.courseTestData?.[currentQuestion];
 
   return (
     <div className="dark:text-[#ffffff]">
-      <Heading
-        title={"ELearning - take test"}
-        description={
-          "ELearning is a programming community which is developed by Apostle Pauley for helping programmers"
-        }
-        keywords="Take test for your course"
-      />
-      {/*{courseTestData.map((question, index) => (
-        <div key={index} style={{ marginBottom: '20px' }}>
-          <h2>{question.question}</h2>
-          <label>
-            <input
-              type="radio"
-              name={`question-${index}`}
-              value="A"
-              onChange={() => handleAnswerChange(index, 'A')}
-            />
-            {question.optionA}
-          </label>
-          <br />
-          <label>
-            <input
-              type="radio"
-              name={`question-${index}`}
-              value="B"
-              onChange={() => handleAnswerChange(index, 'B')}
-            />
-            {question.optionB}
-          </label>
-          <br />
-          <label>
-            <input
-              type="radio"
-              name={`question-${index}`}
-              value="C"
-              onChange={() => handleAnswerChange(index, 'C')}
-            />
-            {question.optionC}
-          </label>
-          <br />
-          <label>
-            <input
-              type="radio"
-              name={`question-${index}`}
-              value="D"
-              onChange={() => handleAnswerChange(index, 'D')}
-            />
-            {question.optionD}
-          </label>
-          <br />
-          <p>
-            {checkedAnswers[index] === true ? (
-              <span style={{ color: 'green' }}>Correct!</span>
-            ) : checkedAnswers[index] === false ? (
-              <span style={{ color: 'red' }}>Incorrect</span>
-            ) : (
-              ''
-            )}
-          </p>
-        </div>
-      ))}*/}
+      <h2>Course Test Questions</h2>
+      <div key={currentQuestion} className="mb-4">
+        {question ? (
+          <>
+            <h3 className="font-bold">Question {currentQuestion + 1}: {question.question}</h3>
+            <ul>
+              {["A", "B", "C", "D"].map((optionKey) => {
+                const optionValue = question[`option${optionKey}` as keyof CourseTestData];
+                return (
+                  <li key={optionKey}>
+                    <label>
+                      <input
+                        type="radio"
+                        name={`question-${currentQuestion}`}
+                        value={optionValue}
+                        checked={selectedOptions[currentQuestion] === optionValue}
+                        onChange={() => handleOptionChange(optionValue)}
+                      />
+                      {optionKey}. {optionValue}
+                    </label>
+                  </li>
+                );
+              })}
+            </ul>
+          </>
+        ) : (
+          <p>Loading question...</p>
+        )}
+      </div>
+      <div className="flex space-x-4 mt-4">
+        {currentQuestion > 0 && (
+          <button onClick={prevQuestion} className="px-4 py-2 bg-gray-600 text-white rounded">
+            Previous
+          </button>
+        )}
+        {currentQuestion < (course?.courseTestData.length || 0) - 1 ? (
+          <button onClick={nextQuestion} className="px-4 py-2 bg-blue-600 text-white rounded">
+            Next
+          </button>
+        ) : (
+          <button onClick={handleSubmit} className="px-4 py-2 bg-green-600 text-white rounded">
+            Submit
+          </button>
+        )}
+      </div>
     </div>
   );
-}
+};
 
 export default CourseTest;
