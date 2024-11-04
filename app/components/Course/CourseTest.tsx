@@ -68,7 +68,14 @@ const CourseTest = ({ id, user }: Props) => {
 
   return (
     <div className="flex items-center justify-center min-h-screen">
-      <div className="dark:text-[#ffffff] max-w-md w-full">
+      <div className="absolute top-[150px] right-4 md:top-[130px] md:right-6 lg:top-[130px] lg:right-8 text-gray-600 dark:text-white">
+        <span className="bg-blue-600 text-[#ffffff] px-4 py-2 text-lg md:text-xl lg:text-2xl rounded">
+          {currentQuestion + 1} / {course?.courseTestData.length || 0}
+        </span>
+      </div>
+
+
+      <div className="dark:text-[#ffffff] max-w-md w-full pl-[30px]">
         <div key={currentQuestion} className="mb-4">
           {question ? (
             <>
