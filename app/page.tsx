@@ -7,6 +7,7 @@ import Reviews from "./components/Route/Reviews";
 import FAQ from "./components/FAQ/FAQ";
 import Footer from "./components/Footer";
 import Heading from "./utils/Heading";
+import Categories from "./components/Categories/Categories";
 
 
 interface Props {}
@@ -31,6 +32,7 @@ const Page: FC<Props> = (props) => {
         route={route}
       />
       <Hero />
+      <Categories />
       <Courses />
       <Reviews />
       <br />
