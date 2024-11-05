@@ -1,5 +1,5 @@
 'use client'
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect, useState } from "react";
 import './globals.css';
 import { Poppins } from "next/font/google";
 import { Josefin_Sans } from "next/font/google";
@@ -48,7 +48,13 @@ export default function RootLayout({
 }
 
 const Custom: React.FC<{children: React.ReactNode}> = ({children}) => {
-  const {isLoading} = useLoadUserQuery({});
+  const { isLoading } = useLoadUserQuery({});
+  const [showLoader, setShowLoader] = useState(true);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => setShowLoader(isLoading), 500); // Delay loader display
+    return () => clearTimeout(timeout);
+  }, [isLoading]);
 
   useEffect(() => {
     socketId.on("connection", () => {});
@@ -56,9 +62,7 @@ const Custom: React.FC<{children: React.ReactNode}> = ({children}) => {
 
   return (
     <>
-      {
-        isLoading ? <Loader /> : <>{children}</>
-      }
+      {showLoader ? <Loader /> : children}
     </>
-  )
+  );
 }
