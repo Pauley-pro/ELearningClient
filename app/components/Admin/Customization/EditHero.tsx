@@ -66,6 +66,8 @@ const EditHero: FC<Props> = (props: Props) => {
                             src={image}
                             alt=""
                             className="object-contain 1100px:max-w-[90%] w-[90%] 1500px:max-w-[85%] h-[auto] z-[10]"
+                            width={100}
+                            height={100}
                         />
                         <input
                             type="file"
@@ -91,8 +93,8 @@ const EditHero: FC<Props> = (props: Props) => {
                         <textarea
                             className="dark:text-[#edfff4] text-[#000000ac] font-Josefin font-[600] text-[18px] 1500px:!w-[55%] 1100px:!w-[78%] bg-transparent"
                             placeholder="We have 40k+ Online registered students. Find your desired courses from them."
-                            value={title}
-                            onChange={(e) => setTitle(e.target.value)}
+                            value={subTitle}
+                            onChange={(e) => setSubtitle(e.target.value)}
                             rows={4}
                         ></textarea>
                         <br />
