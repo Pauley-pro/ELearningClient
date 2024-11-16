@@ -6,27 +6,32 @@ type Props = {
     title: string;
 }
 
-const CoursePlayer:FC<Props> = ({videoUrl}) => {
+const CoursePlayer: FC<Props> = ({ videoUrl }) => {
     const [videoData, setVideoData] = useState({
-        otp:"",
-        playbackInfo:"",
+        otp: "",
+        playbackInfo: "",
     });
+
+
     useEffect(() => {
-        axios.post("https://e-learning-client-phi.vercel.app/api/v1/getVdoCipherOTP",{
+        axios.post("https://e-learning-client-phi.vercel.app/api/v1/getVdoCipherOTP", {
             videoId: videoUrl,
         }).then((res) => {
             setVideoData(res.data);
         });
     }, [videoUrl]);
-    
-        /* axios.post("http://localhost:8000/api/v1/getVdoCipherOTP",{
+
+
+    /*useEffect(() => {
+        axios.post("http://localhost:8000/api/v1/getVdoCipherOTP",{
             videoId: videoUrl,
         }).then((res) => {
             setVideoData(res.data);
         });
     }, [videoUrl]);*/
+
     return (
-        <div style={{ paddingTop: "56.25%", position: "relative", overflow:"hidden" }}>
+        <div style={{ paddingTop: "56.25%", position: "relative", overflow: "hidden" }}>
             {
                 videoData.otp && videoData.playbackInfo !== "" && (
                     <iframe src={`https://player.vdocipher.com/v2/?otp=${videoData?.otp}&playbackInfo=${videoData.playbackInfo}&player=76JQrEzivLboEVug`}
