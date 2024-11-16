@@ -14,7 +14,7 @@ const CoursePlayer: FC<Props> = ({ videoUrl }) => {
 
 
     useEffect(() => {
-        axios.post("https://e-learning-client-phi.vercel.app/api/v1/getVdoCipherOTP", {
+        axios.post("https://elearningapi-rjgb.onrender.com/api/v1/getVdoCipherOTP", {
             videoId: videoUrl,
         }).then((res) => {
             setVideoData(res.data);
