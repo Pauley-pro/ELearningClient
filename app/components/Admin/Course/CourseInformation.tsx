@@ -19,8 +19,7 @@ const CourseInformation: FC<Props> = ({ courseInfo, setCourseInfo, active, setAc
     if (data) {
       setCategories(data.layout.categories);
     }
-  }
-    , [data])
+  }, [data])
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -127,11 +126,11 @@ const CourseInformation: FC<Props> = ({ courseInfo, setCourseInfo, active, setAc
               type="number"
               name=""
               // required
-              value={courseInfo.estimatedprice}
+              value={courseInfo.estimatedPrice}
               onChange={(e: any) =>
                 setCourseInfo({ ...courseInfo, estimatedPrice: e.target.value })
               }
-              id="price"
+              id="estimatedPrice"
               placeholder="79"
               className={`${styles.input}`}
             />
@@ -162,9 +161,9 @@ const CourseInformation: FC<Props> = ({ courseInfo, setCourseInfo, active, setAc
             </label>
             <select
               name=""
-              id=""
+              id="categories"
               className={`${styles.input}`}
-              value={courseInfo.category}
+              value={courseInfo.categories}
               onChange={(e: any) => setCourseInfo({ ...courseInfo, categories: e.target.value })}
             >
               <option value="" id="">Select Category</option>

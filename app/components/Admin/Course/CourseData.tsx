@@ -13,7 +13,41 @@ type Props = {
 }
 
 const CourseData: FC<Props> = ({ benefits, setBenefits, prerequisites, setPrerequisites, active, setActive }) => {
-    const handleBenefitChange = (index: number, value: any) => {
+    const handleBenefitChange = (index: number, value: string) => {
+        const updatedBenefits = benefits.map((benefit, i) =>
+            i === index ? { ...benefit, title: value } : benefit
+        );
+        setBenefits(updatedBenefits);
+    };
+
+    const handleAddBenefit = () => {
+        setBenefits([...benefits, { title: "" }]);
+    };
+
+    const handlePrerequisitesChange = (index: number, value: string) => {
+        const updatedPrerequisites = prerequisites.map((prerequisite, i) =>
+            i === index ? { ...prerequisite, title: value } : prerequisite
+        );
+        setPrerequisites(updatedPrerequisites);
+    };
+
+    const handleAddPrerequisites = () => {
+        setPrerequisites([...prerequisites, { title: "" }]);
+    };
+
+    const prevButton = () => {
+        setActive(active - 1);
+    };
+
+    const handleOptions = () => {
+        if (benefits[benefits.length - 1]?.title !== "" && prerequisites[prerequisites.length - 1]?.title !== "") {
+            setActive(active + 1);
+        } else {
+            toast.error("Please fill the fields to go to the next");
+        }
+    };
+
+    /*const handleBenefitChange = (index: number, value: any) => {
         const updatedBenefits = [...benefits];
         updatedBenefits[index].title = value;
         setBenefits(updatedBenefits);
@@ -43,7 +77,7 @@ const CourseData: FC<Props> = ({ benefits, setBenefits, prerequisites, setPrereq
         } else {
             toast.error("Please fill the fields to go to the next")
         }
-    }
+    }*/
 
     return (
         <div className="w-[80%] m-auto mt-24 block">

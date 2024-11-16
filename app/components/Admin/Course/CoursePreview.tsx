@@ -4,15 +4,6 @@ import { styles } from "@/app/styles/style";
 import Ratings from "@/app/utils/Ratings";
 import { IoCheckmarkDoneOutline } from "react-icons/io5"
 
-type Question = {
-    question: string;
-    correctOption: string; // or number
-    optionA: string;
-    optionB: string;
-    optionC: string;
-    optionD: string;
-};
-
 type Props = {
     active: number;
     setActive: (active: number) => void;

@@ -12,17 +12,24 @@ const CoursePlayer:FC<Props> = ({videoUrl}) => {
         playbackInfo:"",
     });
     useEffect(() => {
-        axios.post("http://localhost:8000/api/v1/getVdoCipherOTP",{
+        axios.post("https://e-learning-client-phi.vercel.app/api/v1/getVdoCipherOTP",{
             videoId: videoUrl,
         }).then((res) => {
             setVideoData(res.data);
         });
     }, [videoUrl]);
+    
+        /* axios.post("http://localhost:8000/api/v1/getVdoCipherOTP",{
+            videoId: videoUrl,
+        }).then((res) => {
+            setVideoData(res.data);
+        });
+    }, [videoUrl]);*/
     return (
         <div style={{ paddingTop: "56.25%", position: "relative", overflow:"hidden" }}>
             {
                 videoData.otp && videoData.playbackInfo !== "" && (
-                    <iframe src={`https://player.vdocipher.com/v2/?otp=${videoData?.otp}&playbackInfo=${videoData.playbackInfo}&player=TuSf2Gxs8ct8rhiU`}
+                    <iframe src={`https://player.vdocipher.com/v2/?otp=${videoData?.otp}&playbackInfo=${videoData.playbackInfo}&player=76JQrEzivLboEVug`}
                         style={{
                             border: 0,
                             width: "100%",
