@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 import axios from "axios"
 
 type Props = {
@@ -12,6 +12,8 @@ const CoursePlayer: FC<Props> = ({ videoUrl }) => {
         playbackInfo: "",
     });
 
+    const iframeRef = useRef<HTMLIFrameElement | null>(null);
+    const localStorageKey = `lastPosition-${videoUrl}`;
 
     useEffect(() => {
         axios.post("https://elearningapi-rjgb.onrender.com/api/v1/getVdoCipherOTP", {
@@ -21,6 +23,30 @@ const CoursePlayer: FC<Props> = ({ videoUrl }) => {
         });
     }, [videoUrl]);
 
+    useEffect(() => {
+        const handlePlaybackUpdate = (event: MessageEvent) => {
+            // Ensure the event is from the VdoCipher iframe
+            if (event.origin !== 'https://player.vdocipher.com') return;
+
+            const data = event.data;
+
+            if (data?.event === "timeupdate") {
+                const lastPosition = data.currentTime; // in seconds
+                localStorage.setItem(localStorageKey, String(lastPosition));
+            }
+        };
+
+        window.addEventListener("message", handlePlaybackUpdate);
+
+        return () => {
+            window.removeEventListener("message", handlePlaybackUpdate);
+        };
+    }, [videoUrl]);
+
+    const getLastPosition = () => {
+        const savedPosition = localStorage.getItem(localStorageKey);
+        return savedPosition ? parseFloat(savedPosition) : 0;
+    };
 
     /*useEffect(() => {
         axios.post("http://localhost:8000/api/v1/getVdoCipherOTP",{
