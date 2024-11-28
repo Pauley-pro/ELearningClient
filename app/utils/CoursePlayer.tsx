@@ -12,8 +12,7 @@ const CoursePlayer: FC<Props> = ({ videoUrl }) => {
         playbackInfo: "",
     });
 
-    const iframeRef = useRef<HTMLIFrameElement | null>(null);
-    const localStorageKey = `lastPosition-${videoUrl}`;
+    const playerRef = useRef<HTMLIFrameElement | null>(null);
 
     useEffect(() => {
         axios.post("https://elearningapi-rjgb.onrender.com/api/v1/getVdoCipherOTP", {
@@ -24,29 +23,37 @@ const CoursePlayer: FC<Props> = ({ videoUrl }) => {
     }, [videoUrl]);
 
     useEffect(() => {
-        const handlePlaybackUpdate = (event: MessageEvent) => {
-            // Ensure the event is from the VdoCipher iframe
-            if (event.origin !== 'https://player.vdocipher.com') return;
-
-            const data = event.data;
-
-            if (data?.event === "timeupdate") {
-                const lastPosition = data.currentTime; // in seconds
-                localStorage.setItem(localStorageKey, String(lastPosition));
+        const savedPosition = localStorage.getItem(`lastPosition-${videoUrl}`);
+        if (savedPosition && playerRef.current) {
+            const player = playerRef.current.contentWindow;
+            if (player) {
+                // Wait for the iframe player to initialize and then seek to the last position
+                player.postMessage(
+                    {
+                        event: 'seek',
+                        time: parseFloat(savedPosition),
+                    },
+                    '*'
+                );
             }
-        };
+        }
+    }, [videoData]);
 
-        window.addEventListener("message", handlePlaybackUpdate);
-
-        return () => {
-            window.removeEventListener("message", handlePlaybackUpdate);
-        };
-    }, [videoUrl]);
-
-    const getLastPosition = () => {
-        const savedPosition = localStorage.getItem(localStorageKey);
-        return savedPosition ? parseFloat(savedPosition) : 0;
+    const handleTimeUpdate = (event: MessageEvent) => {
+        const data = event.data;
+        if (data.event === 'timeupdate') {
+            // Save current time to localStorage
+            localStorage.setItem(`lastPosition-${videoUrl}`, data.time.toString());
+        }
     };
+
+    useEffect(() => {
+        // Listen for messages from the VdoCipher iframe
+        window.addEventListener('message', handleTimeUpdate);
+        return () => {
+            window.removeEventListener('message', handleTimeUpdate);
+        };
+    }, []);
 
     /*useEffect(() => {
         axios.post("http://localhost:8000/api/v1/getVdoCipherOTP",{
