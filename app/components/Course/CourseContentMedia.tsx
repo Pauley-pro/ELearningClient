@@ -155,7 +155,7 @@ const CourseContentMedia = ({ data, id, activeVideo, setActiveVideo, user, refet
                     <AiOutlineArrowLeft className="mr-2" />
                     Prev Lesson
                 </div>
-                
+
                 <div>
                     {activeVideo < data.length - 1 ? (
                         // Show "Next Lesson" button when there are more lessons ahead
@@ -177,7 +177,7 @@ const CourseContentMedia = ({ data, id, activeVideo, setActiveVideo, user, refet
                         </div>
                     )}
                 </div>
-                
+
                 {/*<div
                     className={`${styles.button} !w-[unset] !min-h-[40px] !py-[unset] ${data.length - 1 === activeVideo && "!cursor-no-drop opacity-[.8]"}`}
                     onClick={() => setActiveVideo(data && data.length - 1 === activeVideo ? activeVideo : activeVideo + 1)}
@@ -416,8 +416,7 @@ const CourseContentMedia = ({ data, id, activeVideo, setActiveVideo, user, refet
                         </div>
                     </>
                 </div>
-            )
-            }
+            )}
         </div>
     )
 };
