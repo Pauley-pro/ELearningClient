@@ -132,10 +132,24 @@ const CourseContent: FC<Props> = ({
                                                     value={item.videoSection}
                                                     onChange={(e) => {
                                                         const updatedData = [...courseContentData];
-                                                        updatedData[index].videoSection = e.target.value;
+                                                        updatedData[index] = {
+                                                            ...updatedData[index],
+                                                            videoSection: e.target.value,
+                                                        };
                                                         setCourseContentData(updatedData);
                                                     }}
                                                 />
+
+                                                {/*<input
+                                                    type="text"
+                                                    className={`text-[20px] ${item.videoSection === "Untitled Section" ? "w-[170px]" : "w-min"} font-Poppins cursor-pointer dark:text-white text-black bg-transparent outline-none`}
+                                                    value={item.videoSection}
+                                                    onChange={(e) => {
+                                                        const updatedData = [...courseContentData];
+                                                        updatedData[index].videoSection = e.target.value;
+                                                        setCourseContentData(updatedData);
+                                                    }}
+                                                />*/}
                                                 <BsPencil className="cursor-pointer dark:text-white text-black" />
                                             </div>
                                             <br />
@@ -193,11 +207,11 @@ const CourseContent: FC<Props> = ({
                                                         updatedData[index] = { ...updatedData[index], title: e.target.value };
                                                         setCourseContentData(updatedData);
                                                     }}
-                                                    /*onChange={(e) => {
-                                                        const updatedData = [...courseContentData];
-                                                        updatedData[index].title = e.target.value;
-                                                        setCourseContentData(updatedData);
-                                                    }}*/
+                                                /*onChange={(e) => {
+                                                    const updatedData = [...courseContentData];
+                                                    updatedData[index].title = e.target.value;
+                                                    setCourseContentData(updatedData);
+                                                }}*/
                                                 />
                                             </div>
                                             <div className="mb-3">
@@ -212,11 +226,11 @@ const CourseContent: FC<Props> = ({
                                                         updatedData[index] = { ...updatedData[index], videoUrl: e.target.value };
                                                         setCourseContentData(updatedData);
                                                     }}
-                                                    /*onChange={(e)=>{
-                                                        const updatedData = [...courseContentData];
-                                                        updatedData[index].videoUrl = e.target.value;
-                                                        setCourseContentData(updatedData);
-                                                    }}*/
+                                                /*onChange={(e)=>{
+                                                    const updatedData = [...courseContentData];
+                                                    updatedData[index].videoUrl = e.target.value;
+                                                    setCourseContentData(updatedData);
+                                                }}*/
                                                 />
                                             </div>
                                             <div className="mb-3">
@@ -231,11 +245,11 @@ const CourseContent: FC<Props> = ({
                                                         updatedData[index] = { ...updatedData[index], videoLength: e.target.value };
                                                         setCourseContentData(updatedData);
                                                     }}
-                                                    /*onChange={(e) => {
-                                                        const updatedData = [...courseContentData];
-                                                        updatedData[index].videoLength = e.target.value;
-                                                        setCourseContentData(updatedData);
-                                                    }}*/
+                                                /*onChange={(e) => {
+                                                    const updatedData = [...courseContentData];
+                                                    updatedData[index].videoLength = e.target.value;
+                                                    setCourseContentData(updatedData);
+                                                }}*/
                                                 />
                                             </div>
                                             <div className="mb-3">
