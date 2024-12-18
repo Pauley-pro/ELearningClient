@@ -3,7 +3,7 @@ import { FC, useEffect, useState } from "react";
 import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Box, IconButton, Typography } from "@mui/material";
 import "react-pro-sidebar/dist/css/styles.css";
-import { 
+import {
     HomeOutlinedIcon,
     ArrowForwardIosIcon,
     ArrowBackIosIcon,
@@ -14,7 +14,7 @@ import {
     GroupsIcon,
     OndemandVideoIcon,
     VideoCallIcon,
-    WebIcon, 
+    WebIcon,
     QuizIcon,
     WysiwygIcon,
     ManageHistoryIcon,
@@ -28,7 +28,7 @@ import Image from "next/image";
 import { useTheme } from "next-themes";
 import { IoMdArrowBack } from "react-icons/io";
 
-interface itemProps{
+interface itemProps {
     title: string;
     to: string;
     icon: JSX.Element;
@@ -37,7 +37,7 @@ interface itemProps{
 }
 
 const Item: FC<itemProps> = ({ title, to, icon, selected, setSelected }) => {
-    return(
+    return (
         <MenuItem active={selected === title} onClick={() => setSelected(title)} icon={icon}>
             <Typography className="!text-[16px] !font-Poppins">{title}</Typography>
             <Link href={to} />
@@ -46,36 +46,34 @@ const Item: FC<itemProps> = ({ title, to, icon, selected, setSelected }) => {
 };
 
 const Sidebar = () => {
-    const {user} = useSelector((state:any) => state.auth);
+    const { user } = useSelector((state: any) => state.auth);
     const [logout, setLogout] = useState(false);
     const [selected, setSelected] = useState("Dashboard");
     const [isCollapsed, setIsCollapsed] = useState(false);
     const [mounted, setMounted] = useState(false);
-    const {theme, setTheme} = useTheme();
+    const { theme, setTheme } = useTheme();
 
     useEffect(() => setMounted(true), []);
-    if (!mounted){
+    if (!mounted) {
         return null;
     }
 
     const logoutHandler = () => {
         setLogout(true);
     }
-
-    return(
+    return (
         <Box sx={{
-            "& .pro-sidebar-inner":{
-                background:`${
-                    theme === "dark" ? "#111C43 !important"  : "#fff !important"
-                }`,
+            "& .pro-sidebar-inner": {
+                background: `${theme === "dark" ? "#111C43 !important" : "#fff !important"
+                    }`,
             },
-            "& .pro-icon-wrapper":{
+            "& .pro-icon-wrapper": {
                 backgroundColor: "transparent !important",
             },
-            "& .pro-inner-item:hover":{
+            "& .pro-inner-item:hover": {
                 color: "#868dfb !important",
             },
-            "& .pro-inner-item.active":{
+            "& .pro-inner-item.active": {
                 color: "#6870fa !important",
             },
             "& .pro-inner-item": {
@@ -85,13 +83,13 @@ const Sidebar = () => {
             "& .pro-menu-item": {
                 color: `${theme !== "dark" && "#000"}`,
             },
-            }}
+        }}
             className="!bg-white dark:bg-[#111C43]"
         >
-            <ProSidebar 
-                collapsed={isCollapsed} 
+            <ProSidebar
+                collapsed={isCollapsed}
                 style={{
-                    position:"fixed",
+                    position: "fixed",
                     top: 0,
                     left: 0,
                     height: "100vh",
@@ -104,7 +102,7 @@ const Sidebar = () => {
                         onClick={() => setIsCollapsed(!isCollapsed)}
                         icon={isCollapsed ? <ArrowForwardIosIcon /> : undefined}
                         style={{
-                            margin:"10px 0 20px 0",
+                            margin: "10px 0 20px 0",
                         }}
                     >
                         {!isCollapsed && (
@@ -123,31 +121,31 @@ const Sidebar = () => {
                     {!isCollapsed && (
                         <Box mb="25px">
                             <Box display="flex" justifyContent="center" alignItems="center">
-                                <Image alt="profile-user" width={100} height={100} className="w-[100px] h-[100px]" src={user.avatar ? user.avatar.url : avatarDefault} style={{cursor:"pointer", borderRadius: "50%", border: "3px solid #5b6fe6",}} />
+                                <Image alt="profile-user" width={100} height={100} className="w-[100px] h-[100px]" src={user.avatar ? user.avatar.url : avatarDefault} style={{ cursor: "pointer", borderRadius: "50%", border: "3px solid #5b6fe6", }} />
                             </Box>
                             <Box textAlign="center">
-                                <Typography 
-                                    variant="h4" 
-                                    className="!text-[20px] text-black dark:text-[#ffffffc1]" 
-                                    sx={{m:"10px 0 0 0"}}
+                                <Typography
+                                    variant="h4"
+                                    className="!text-[20px] text-black dark:text-[#ffffffc1]"
+                                    sx={{ m: "10px 0 0 0" }}
                                 >
                                     {user?.name}
                                 </Typography>
-                                <Typography 
-                                    variant="h6" 
-                                    className="!text-[20px] text-black dark:text-[#ffffffc1] capitalize" 
-                                    sx={{m:"10px 0 0 0"}}
+                                <Typography
+                                    variant="h6"
+                                    className="!text-[20px] text-black dark:text-[#ffffffc1] capitalize"
+                                    sx={{ m: "10px 0 0 0" }}
                                 >
-                                   - {user?.role}
+                                    - {user?.role}
                                 </Typography>
                             </Box>
                         </Box>
                     )}
-                    
+
                     <Box paddingLeft={isCollapsed ? undefined : "10%"}>
                         <Item
                             title="Dashboard"
-                            to="/admin"
+                            to="/manager"
                             icon={<HomeOutlinedIcon />}
                             selected={selected}
                             setSelected={setSelected}
@@ -159,6 +157,7 @@ const Sidebar = () => {
                             selected={selected}
                             setSelected={setSelected}
                         />
+                        {/*
                         <Typography
                             variant="h5"
                             className="!item-[18px] text-black dark:text-[#ffffffc1] capitalize !font-[400]"
@@ -181,6 +180,7 @@ const Sidebar = () => {
                             selected={selected}
                             setSelected={setSelected}
                         />
+                        */}
                         <Typography
                             variant="h5"
                             className="!item-[18px] text-black dark:text-[#ffffffc1] capitalize !font-[400]"
@@ -191,14 +191,14 @@ const Sidebar = () => {
 
                         <Item
                             title="Create Course"
-                            to="/admin/create-course"
+                            to="/manager/create-course"
                             icon={<VideoCallIcon />}
                             selected={selected}
                             setSelected={setSelected}
                         />
                         <Item
                             title="Live Course"
-                            to="/admin/courses"
+                            to="/manager/courses"
                             icon={<OndemandVideoIcon />}
                             selected={selected}
                             setSelected={setSelected}
@@ -212,39 +212,26 @@ const Sidebar = () => {
                         </Typography>
                         <Item
                             title="Hero"
-                            to="/admin/hero"
+                            to="/manager/hero"
                             icon={<WebIcon />}
                             selected={selected}
                             setSelected={setSelected}
                         />
                         <Item
                             title="FAQ"
-                            to="/admin/faq"
+                            to="/manager/faq"
                             icon={<QuizIcon />}
                             selected={selected}
                             setSelected={setSelected}
                         />
                         <Item
                             title="Categories"
-                            to="/admin/categories"
+                            to="/manager/categories"
                             icon={<WysiwygIcon />}
                             selected={selected}
                             setSelected={setSelected}
                         />
-                        <Typography
-                            variant="h5"
-                            className="!item-[18px] text-black dark:text-[#ffffffc1] capitalize !font-[400]"
-                            sx={{ m: "15px 0 5px 20px" }}
-                        >
-                            {!isCollapsed && "Controllers"}
-                        </Typography>
-                        <Item
-                            title="Manage Team"
-                            to="/admin/team"
-                            icon={<PeopleOutlinedIcon />}
-                            selected={selected}
-                            setSelected={setSelected}
-                        />
+                        {/* 
                         <Typography
                             variant="h6"
                             className="!item-[18px] text-black dark:text-[#ffffffc1] capitalize !font-[400]"
@@ -273,6 +260,7 @@ const Sidebar = () => {
                             selected={selected}
                             setSelected={setSelected}
                         />
+                        */}
                         <Typography
                             variant="h6"
                             className="!item-[18px] text-black dark:text-[#ffffffc1] capitalize !font-[400]"
@@ -280,13 +268,6 @@ const Sidebar = () => {
                         >
                             {!isCollapsed && "Extras"}
                         </Typography>
-                        {/*<Item
-                            title="Settings"
-                            to="/admin/settings"
-                            icon={<SettingsIcon />}
-                            selected={selected}
-                            setSelected={setSelected}
-                        />*/}
                         <div onClick={logoutHandler}>
                             <Item
                                 title="logout"
@@ -306,4 +287,3 @@ const Sidebar = () => {
 
 
 export default Sidebar;
-

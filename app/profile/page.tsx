@@ -22,7 +22,7 @@ const Page: FC<Props> = (props) => {
                     description="ELearning is a platform for students to learn and get help from teachers"
                     keywords="Programming, MERN, Redux, Machine Learning"
                 />
-                <Header 
+                <Header
                     open={open}
                     setOpen={setOpen}
                     activeItem={activeItem}

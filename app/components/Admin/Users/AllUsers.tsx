@@ -8,6 +8,7 @@ import Loader from '../../Loader/Loader';
 import { format } from "timeago.js"
 import { styles } from '@/app/styles/style';
 import toast from 'react-hot-toast';
+import { FaTimes } from "react-icons/fa";
 
 
 type Props = {
@@ -102,7 +103,8 @@ const AllUsers: FC<Props> = ({ isTeam }) => {
     const rows: any = [];
 
     if (isTeam) {
-        const newData = data && data.users.filter((item: any) => item.role === "admin");
+        const newData = data && data.users.filter((item: any) => item.role === "admin" || item.role === "manager");
+        // const newData = data && data.users.filter((item: any) => item.role === "admin");
         newData && newData.forEach((item: any) => {
             rows.push({
                 id: item._id,
@@ -216,9 +218,17 @@ const AllUsers: FC<Props> = ({ isTeam }) => {
                                     aria-describedby="modal-modal-description"
                                 >
                                     <Box className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[450px] bg-white dark:bg-slate-900 rounded-[8px] shadow p-4 outline-none">
+                                        <button
+                                            onClick={() => setActive(false)}
+                                            className="flex flex-row justify-center items-center py-3 px-3 mt-[-20px] cursor-pointer bg-[#2190ff] text-[16px] text-[#ffffff] font-Poppins font-semibold rounded-full"
+                                        >
+                                            <FaTimes />
+                                        </button>
+
                                         <h1 className={`${styles.title}`}>
                                             Add New Members
                                         </h1>
+
                                         <div className="mt-4">
                                             <input
                                                 type="email"
@@ -229,6 +239,7 @@ const AllUsers: FC<Props> = ({ isTeam }) => {
                                             />
                                             <select name="" id="" className={`${styles.input} !mt-6`} value={role} onChange={(e) => setRole(e.target.value)}>
                                                 <option value="admin">Admin</option>
+                                                <option value="manager">Manager</option>
                                                 <option value="user">User</option>
                                             </select>
                                             <br />

@@ -1,5 +1,5 @@
 import { styles } from '@/app/styles/style';
-import { useEditLayoutMutation, useGetHeroDataQuery } from '@/redux/features/layout/layoutApi';
+import { useEditLayoutManagerMutation, useGetHeroDataQuery } from '@/redux/features/layout/layoutApi';
 import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast';
 import { AiOutlineDelete } from 'react-icons/ai';
@@ -13,7 +13,7 @@ const EditFaq = (props: Props) => {
     const { data, isLoading, refetch } = useGetHeroDataQuery("FAQ", {
         refetchOnMountOrArgChange: true,
     });
-    const [editLayout, { isSuccess: layoutSuccess, error }] = useEditLayoutMutation();
+    const [editLayout, { isSuccess: layoutSuccess, error }] = useEditLayoutManagerMutation();
     const [questions, setQuestions] = useState<any[]>([]);
 
     useEffect(() => {

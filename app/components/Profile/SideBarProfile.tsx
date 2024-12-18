@@ -16,13 +16,13 @@ type Props = {
   logOutHandler: any;
 }
 
-const SideBarProfile:FC<Props> = ({user, active, avatar, setActive, logOutHandler }) => {
-  
+const SideBarProfile: FC<Props> = ({ user, active, avatar, setActive, logOutHandler }) => {
+
   return (
     <div className="w-full">
       <div className={`w-full flex items-center px-3 py-4 cursor-pointer ${active === 1 ? "dark:bg-slate-800 bg-white" : "bg-transparent"}`} onClick={() => setActive(1)}>
-        <Image 
-          src={user.avatar || avatar ? user.avatar.url || avatar : avatarDefault} 
+        <Image
+          src={user.avatar || avatar ? user.avatar.url || avatar : avatarDefault}
           alt=""
           width={20}
           height={20}
@@ -47,10 +47,20 @@ const SideBarProfile:FC<Props> = ({user, active, avatar, setActive, logOutHandle
       {
         user.role === "admin" && (
           <Link className={`w-full flex items-center px-3 py-4 cursor-pointer ${active === 6 ? "dark:bg-slate-800 bg-white" : "bg-transparent"}`} href={"/admin"}>
-              <MdOutlineAdminPanelSettings size={20} className="dark:text-white text-black" />
-              <h5 className="pl-2 800px:block hidden font-Poppins dark:text-white text-black">
-                Admin Dashboard
-              </h5>
+            <MdOutlineAdminPanelSettings size={20} className="dark:text-white text-black" />
+            <h5 className="pl-2 800px:block hidden font-Poppins dark:text-white text-black">
+              Admin Dashboard
+            </h5>
+          </Link>
+        )
+      }
+      {
+        user.role === "manager" && (
+          <Link className={`w-full flex items-center px-3 py-4 cursor-pointer ${active === 7 ? "dark:bg-slate-800 bg-white" : "bg-transparent"}`} href={"/manager"}>
+            <MdOutlineAdminPanelSettings size={20} className="dark:text-white text-black" />
+            <h5 className="pl-2 800px:block hidden font-Poppins dark:text-white text-black">
+              Manager Dashboard
+            </h5>
           </Link>
         )
       }

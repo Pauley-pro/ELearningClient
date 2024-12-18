@@ -169,7 +169,7 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
                                             <br />
                                             <br />
                                             <p className="text-[16px] px-2 pl-5 text-black dark:text-white">
-                                                Copyright &copy; 2023 ELearning
+                                            Copyright &copy; {new Date().getFullYear()} ELearning
                                             </p>
                                         </div>
                                     </div>
