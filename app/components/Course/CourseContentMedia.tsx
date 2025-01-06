@@ -139,7 +139,7 @@ const CourseContentMedia = ({ data, id, activeVideo, setActiveVideo, user, refet
         }
     }
 
-
+    const progressPercentage = Math.floor(((activeVideo + 1) / data.length) * 100);
 
     return (
         <div className="w-[95%] 800px:w-[86%] py-4 m-auto">
@@ -147,6 +147,17 @@ const CourseContentMedia = ({ data, id, activeVideo, setActiveVideo, user, refet
                 title={data[activeVideo]?.title}
                 videoUrl={data[activeVideo]?.videoUrl}
             />
+
+            <br />
+            <br />
+            {/* Progress Bar */}
+            <div className="w-full bg-gray-300 h-2 rounded-full my-3">
+                <div
+                    className="bg-blue-500 h-full rounded-full transition-all"
+                    style={{ width: `${progressPercentage}%` }}
+                ></div>
+            </div>
+
             <div className="w-full flex items-center justify-between my-3">
                 <div
                     className={`${styles.button} !w-[unset] !min-h-[40px] !py-[unset] ${activeVideo === 0 && "!cursor-no-drop opacity-[.8]"}`}
@@ -157,6 +168,41 @@ const CourseContentMedia = ({ data, id, activeVideo, setActiveVideo, user, refet
                 </div>
 
                 <div>
+                    {activeVideo < data.length - 1 ? (
+                        // Show "Next Lesson" button when there are more lessons ahead
+                        <div
+                            className={`${styles.button} !w-[unset] !min-h-[40px] !py-[unset]`}
+                            onClick={() => setActiveVideo(activeVideo + 1)}
+                        >
+                            Next Lesson
+                            <AiOutlineArrowRight className="ml-2" />
+                        </div>
+                    ) : progressPercentage === 100 ? (
+                        // Show "Finish" button after the last lesson
+                        <div
+                            className={`${styles.button} !w-[unset] !min-h-[40px] !py-[unset]`}
+                            onClick={() => {
+                                // Set to a state indicating lessons are finished
+                                router.push(`/course-test/${id}`);
+                            }}
+                        >
+                            Finish
+                            <AiOutlineArrowRight className="ml-2" />
+                        </div>
+                    ) : (
+                        // Show "Take Test" button
+                        <div
+                            className={`${styles.button} !w-[unset] !min-h-[40px] !py-[unset]`}
+                            onClick={() => router.push(`/course-test/${id}`)}
+                        >
+                            Take Test
+                            <AiOutlineArrowRight className="ml-2" />
+                        </div>
+                    )}
+                </div>
+            
+
+                {/*<div>
                     {activeVideo < data.length - 1 ? (
                         // Show "Next Lesson" button when there are more lessons ahead
                         <div
@@ -176,7 +222,7 @@ const CourseContentMedia = ({ data, id, activeVideo, setActiveVideo, user, refet
                             <AiOutlineArrowRight className="mr-2" />
                         </div>
                     )}
-                </div>
+                </div>*/}
 
                 {/*<div
                     className={`${styles.button} !w-[unset] !min-h-[40px] !py-[unset] ${data.length - 1 === activeVideo && "!cursor-no-drop opacity-[.8]"}`}

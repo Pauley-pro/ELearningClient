@@ -73,7 +73,7 @@ const ProfileInfo: FC<Props> = ({ avatar, user }) => {
                     />
                     <label htmlFor="avatar">
                         <div className="w-[30px] h-[30px] bg-slate-900 rounded-full absolute bottom-2 right-2 flex items-center justify-center cursor-pointer">
-                            <AiOutlineCamera size={20} className="z-1 dark:text-white text-black" />
+                            <AiOutlineCamera size={20} className="z-1 dark:text-white text-white" />
                         </div>
                     </label>
                 </div>
