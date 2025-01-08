@@ -28,6 +28,7 @@ import Image from "next/image";
 import { useTheme } from "next-themes";
 import { IoMdArrowBack } from "react-icons/io";
 import { useLogOutQuery } from '@/redux/features/auth/authApi';
+import { signOut } from 'next-auth/react';
 
 interface itemProps{
     title: string;
@@ -63,8 +64,9 @@ const Sidebar = () => {
         return null;
     }
 
-    const logoutHandler = () => {
+    const logOutHandler = async () => {
         setLogout(true);
+        await signOut();
     }
 
     return(
@@ -292,7 +294,7 @@ const Sidebar = () => {
                             selected={selected}
                             setSelected={setSelected}
                         />*/}
-                        <div onClick={logoutHandler}>
+                        <div onClick={logOutHandler}>
                             <Item
                                 title="logout"
                                 to="/"
