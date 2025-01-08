@@ -27,6 +27,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useTheme } from "next-themes";
 import { IoMdArrowBack } from "react-icons/io";
+import { useLogOutQuery } from '@/redux/features/auth/authApi';
 
 interface itemProps{
     title: string;
@@ -52,6 +53,10 @@ const Sidebar = () => {
     const [isCollapsed, setIsCollapsed] = useState(false);
     const [mounted, setMounted] = useState(false);
     const {theme, setTheme} = useTheme();
+
+    const { } = useLogOutQuery(undefined, {
+        skip: !logout ? true : false,
+    });
 
     useEffect(() => setMounted(true), []);
     if (!mounted){
@@ -273,21 +278,21 @@ const Sidebar = () => {
                             selected={selected}
                             setSelected={setSelected}
                         />
-                        {/*<Typography
+                        <Typography
                             variant="h6"
                             className="!item-[18px] text-black dark:text-[#ffffffc1] capitalize !font-[400]"
                             sx={{ m: "15px 0 5px 20px" }}
                         >
                             {!isCollapsed && "Extras"}
                         </Typography>
-                        <Item
+                        {/*<Item
                             title="Settings"
                             to="/admin/settings"
                             icon={<SettingsIcon />}
                             selected={selected}
                             setSelected={setSelected}
-                        />
-                        {/*<div onClick={logoutHandler}>
+                        />*/}
+                        <div onClick={logoutHandler}>
                             <Item
                                 title="logout"
                                 to="/"
@@ -295,7 +300,7 @@ const Sidebar = () => {
                                 selected={selected}
                                 setSelected={setSelected}
                             />
-                        </div>*/}
+                        </div>
                     </Box>
                 </Menu>
             </ProSidebar>

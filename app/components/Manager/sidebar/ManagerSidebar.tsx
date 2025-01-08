@@ -27,6 +27,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useTheme } from "next-themes";
 import { IoMdArrowBack } from "react-icons/io";
+import { useLogOutQuery } from '@/redux/features/auth/authApi';
 
 interface itemProps {
     title: string;
@@ -53,6 +54,10 @@ const Sidebar = () => {
     const [mounted, setMounted] = useState(false);
     const { theme, setTheme } = useTheme();
 
+    const { } = useLogOutQuery(undefined, {
+        skip: !logout ? true : false,
+    });
+
     useEffect(() => setMounted(true), []);
     if (!mounted) {
         return null;
@@ -61,6 +66,11 @@ const Sidebar = () => {
     const logoutHandler = () => {
         setLogout(true);
     }
+
+    /*const logoutHandler = () => {
+        setLogout(true);
+    }*/
+
     return (
         <Box sx={{
             "& .pro-sidebar-inner": {
@@ -261,7 +271,7 @@ const Sidebar = () => {
                             setSelected={setSelected}
                         />
                         */}
-                        {/*<Typography
+                        <Typography
                             variant="h6"
                             className="!item-[18px] text-black dark:text-[#ffffffc1] capitalize !font-[400]"
                             sx={{ m: "15px 0 5px 20px" }}
@@ -276,7 +286,7 @@ const Sidebar = () => {
                                 selected={selected}
                                 setSelected={setSelected}
                             />
-                        </div>*/}
+                        </div>
                     </Box>
                 </Menu>
             </ProSidebar>
