@@ -91,8 +91,13 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
                             <div className="w-[95%] 800px:w-[92%] m-auto py-2 h-full">
                                 <div className="w-full h-[80px] flex items-center justify-between p-3">
                                     <div>
-                                        <Link href={"/"} className={`text-[25px] font-Poppins font-[500] text-black dark:text-white`}>
-                                            ELearning
+                                        <Link href="/">
+                                            <Image
+                                                src={"https://res.cloudinary.com/polad/image/upload/v1736343154/WhatsApp_Image_2025-01-08_at_2.30.37_PM-removebg-preview_jn4sja.png"}
+                                                alt="logo"
+                                                height={100}
+                                                width={130}
+                                            />
                                         </Link>
                                     </div>
                                     <div className="flex items-center">
@@ -108,9 +113,9 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
                                                 <Link href={"/profile"}>
                                                     <Image
                                                         src={userData?.user.avatar ? userData.user.avatar.url : avatar}
-                                                        alt="" 
-                                                        width={30} 
-                                                        height={30} 
+                                                        alt=""
+                                                        width={30}
+                                                        height={30}
                                                         className="w-[30px] h-[30px] rounded-full cursor-pointer"
                                                         style={{ border: activeItem === 5 ? "2px solid #37a39a" : "none" }}
                                                     />
@@ -169,7 +174,7 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
                                             <br />
                                             <br />
                                             <p className="text-[16px] px-2 pl-5 text-black dark:text-white">
-                                            Copyright &copy; {new Date().getFullYear()} ELearning
+                                                Copyright &copy; {new Date().getFullYear()} ELearning
                                             </p>
                                         </div>
                                     </div>

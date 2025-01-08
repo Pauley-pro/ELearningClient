@@ -1,4 +1,85 @@
+import { useGetHeroDataQuery } from '@/redux/features/layout/layoutApi';
+import Image from 'next/image';
 import Link from 'next/link'
+import React, { useState } from 'react'
+import { FaFacebook, FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa'
+
+const Footer = () => {
+    const { data: categoriesData } = useGetHeroDataQuery("Categories", {});
+    const categories = categoriesData?.layout.categories
+    const [category, setCategory] = useState("All");
+
+    return (
+        <footer>
+            <div className="flex items-center justify-center">
+                <div className="border border-[#000000e] w-[95%] dark:border-[#ffffff1e]" />
+            </div>
+            <br />
+            <div className="w-[95%] mx-auto grid items-start grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-8 border-b-[1.5px] border-white border-opacity-20">
+                <div>
+                    <Link href="/">
+                        <Image
+                            src={"https://res.cloudinary.com/polad/image/upload/v1736343154/WhatsApp_Image_2025-01-08_at_2.30.37_PM-removebg-preview_jn4sja.png"}
+                            alt="logo"
+                            height={150}
+                            width={150}
+                        />
+                    </Link>
+
+                    <p className="text-white text-opacity-50">
+                        Best online platform for your self-development
+                    </p>
+                    <div className="flex items-center space-x-4 mt-6">
+                        <FaFacebook className="w-6 h-6 text-blue-600" />
+                        <FaTwitter className="w-6 h-6 text-sky-500" />
+                        <FaYoutube className="w-6 h-6 text-red-700" />
+                        <FaInstagram className="w-6 h-6 text-pink-600" />
+                    </div>
+                </div>
+                <div>
+                    <h1 className="footer__heading">Categories</h1>
+                    {categories && categories.map((item: any, index: number) => (
+                        <div key={index}>
+                            <p
+                                className={`${category === item.title ? "footer__link" : "footer__link"} cursor-pointer`}
+                                onClick={() => setCategory(item.title)}
+                            >
+                                {item.title}
+                            </p>
+                        </div>
+                    ))}
+
+                    {/*<p className="footer__link">Web development</p>
+                    <p className="footer__link">Software development</p>
+                    <p className="footer__link">Data analytics</p>
+                    <p className="footer__link">UI/UX design</p>
+                    <p className="footer__link">Hacking</p>*/}
+                </div>
+                <div>
+                    <h1 className="footer__heading">Quick Link</h1>
+                    <p className="footer__link"><a href="/">Home</a></p>
+                    <p className="footer__link"><a href="/about">About</a></p>
+                    <p className="footer__link"><a href="/courses">Courses</a></p>
+                    <p className="footer__link"><a href="/policy">Policy</a></p>
+                    <p className="footer__link"><a href="/faq">FAQ</a></p>
+                </div>
+                <div>
+                    <h1 className="footer__heading">Contact Info</h1>
+                    <p className="footer__span">Call us: <span className="footer__link">+1-234-567-890</span></p>
+                    <p className="footer__span">Address: <span className="footer__link">XYZ Palace</span></p>
+                    <p className="footer__span">Mail Us: <span className="footer__link">elearning@gmail.com</span></p>
+                </div>
+            </div>
+            <p className="text-center text-black dark:text-white pt-[30px] pb-[30px]">
+                Copyright &copy; {new Date().getFullYear()} Mindzyte | All RIghts Reserved
+            </p>
+        </footer>
+    )
+}
+
+export default Footer
+
+/*import Link from 'next/link'
 import React from 'react'
 
 type Props = {}
@@ -79,17 +160,17 @@ const Footer = (props: Props) => {
                             Address: XYZ Palace
                         </p>
                         <p className="text-base text-black dark:text-gray-300 dark:hover:text-white">
-                            Mail Us: elearning@gmail.com
+                            Mail Us: admin@mindzyte.com
                         </p>
                     </div>
                 </div>
                 <br />
                 <p className="text-center text-black dark:text-white pt-[80px] pb-[60px]">
-                    Copyright &copy; {new Date().getFullYear()} ELearning | All RIghts Reserved
+                    Copyright &copy; {new Date().getFullYear()} Mindzyte | All RIghts Reserved
                 </p>
             </div>
         </footer>
     )
 }
 
-export default Footer
+export default Footer*/

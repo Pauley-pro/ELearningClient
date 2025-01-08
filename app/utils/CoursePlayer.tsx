@@ -12,7 +12,7 @@ const CoursePlayer: FC<Props> = ({ videoUrl }) => {
         playbackInfo: "",
     });
 
-
+    
     useEffect(() => {
         axios.post("https://elearningapi-rjgb.onrender.com/api/v1/getVdoCipherOTP", {
             videoId: videoUrl,
@@ -20,7 +20,7 @@ const CoursePlayer: FC<Props> = ({ videoUrl }) => {
             setVideoData(res.data);
         });
     }, [videoUrl]);
-
+    
 
     /*useEffect(() => {
         axios.post("http://localhost:8000/api/v1/getVdoCipherOTP",{

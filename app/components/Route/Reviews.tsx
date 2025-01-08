@@ -2,6 +2,8 @@
 import React from 'react'
 import { BsQuote } from 'react-icons/bs'
 import Slider from '../Helper/Slider'
+import CountUp from 'react-countup';
+import VisibilitySensor from 'react-visibility-sensor';
 
 type Props = {}
 
@@ -21,11 +23,19 @@ const Review = (props: Props) => {
                         Trusted by genius people.
                     </h1>
                     <p className="text-base dark:text-white dark:text-opacity-50  text-black mt-6">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio 
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio
                         aspernatur adipisci mollitia, possimus nam impedit.
                     </p>
                     <div className="flex items-center space-x-10 mt-8">
-                        <p className="dark:text-white font-bold text-5xl">99%</p>
+                        <p className="dark:text-white font-bold text-5xl">
+                        <CountUp end={99} duration={5} redraw={true} suffix="%">
+                            {({ countUpRef, start }) => (
+                                <VisibilitySensor onChange={start} delayedCall>
+                                    <span ref={countUpRef} />
+                                </VisibilitySensor>
+                            )}
+                        </CountUp>
+                        </p>
                         <p className="dark:text-white text-base">Student&apos;s complete <br /> Course Successfully</p>
                     </div>
                 </div>
