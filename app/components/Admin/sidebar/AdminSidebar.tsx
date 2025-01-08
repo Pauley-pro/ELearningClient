@@ -29,6 +29,7 @@ import { useTheme } from "next-themes";
 import { IoMdArrowBack } from "react-icons/io";
 import { useLogOutQuery } from '@/redux/features/auth/authApi';
 import { signOut } from 'next-auth/react';
+import toast from 'react-hot-toast';
 
 interface itemProps{
     title: string;
@@ -65,9 +66,22 @@ const Sidebar = () => {
     }
 
     const logOutHandler = async () => {
+        try {
+            setLogout(true);
+            await signOut();
+            toast.success("Logout successful!");
+        } catch (error) {
+            toast.error("Logout failed. Please try again.");
+            console.error("Logout error:", error);
+        } finally {
+            setLogout(false);
+        }
+    };
+
+    {/*const logOutHandler = async () => {
         setLogout(true);
         await signOut();
-    }
+    }*/}
 
     return(
         <Box sx={{

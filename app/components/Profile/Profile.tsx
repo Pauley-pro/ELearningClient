@@ -7,6 +7,7 @@ import ProfileInfo from "./ProfileInfo"
 import ChangePassword from './ChangePassword';
 import CourseCard from '../Course/CourseCard';
 import { useGetUsersAllCoursesQuery } from '@/redux/features/courses/coursesApi';
+import toast from 'react-hot-toast';
 
 type Props = {
     user: any;
@@ -21,12 +22,26 @@ const Profile: FC<Props> = ({ user }) => {
     const { } = useLogOutQuery(undefined, {
         skip: !logout ? true : false,
     });
+    
     const [active, setActive] = useState(1);
 
     const logOutHandler = async () => {
+        try {
+            setLogout(true);
+            await signOut(); // Perform the logout logic
+            toast.success("Logout successful!");
+        } catch (error) {
+            toast.error("Logout failed. Please try again.");
+            console.error("Logout error:", error);
+        } finally {
+            setLogout(false); // Reset logout state
+        }
+    };
+
+    {/*const logOutHandler = async () => {
         setLogout(true);
         await signOut();
-    }
+    }*/}
 
     if (typeof window !== "undefined") {
         window.addEventListener("scroll", () => {
