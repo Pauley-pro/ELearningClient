@@ -15,7 +15,7 @@ const Footer = () => {
                 <div className="border border-[#000000e] w-[95%] dark:border-[#ffffff1e]" />
             </div>
             <br />
-            <div className="w-[95%] mx-auto grid items-start grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-8 border-b-[1.5px] border-white border-opacity-20">
+            <div className="w-[95%] mx-auto grid items-start grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-8 border-b-[1.5px] dark:border-[#ffffff1e] border-opacity-20">
                 <div>
                     <Link href="/">
                         <Image
@@ -26,7 +26,7 @@ const Footer = () => {
                         />
                     </Link>
 
-                    <p className="text-white text-opacity-50">
+                    <p className="text-[#000000] text-opacity-50 dark:text-white dark:text-opacity-50">
                         Best online platform for your self-development
                     </p>
                     <div className="flex items-center space-x-4 mt-6">

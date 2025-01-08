@@ -218,10 +218,10 @@ body {
   }
 
   .footer__link{
-      @apply text-sm text-white hover:text-green-700 text-opacity-60 mb-3 w-fit
+      @apply text-sm text-[#000000] text-opacity-50 dark:text-white hover:text-green-700 dark:text-opacity-60 mb-3 w-fit
   }
 
   .footer__span{
-      @apply text-white hover:text-white
+      @apply text-[#000000] dark:text-white hover:text-white
   }
 }
