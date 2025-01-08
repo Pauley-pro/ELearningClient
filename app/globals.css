@@ -214,7 +214,7 @@ body {
   }
 
   .footer__heading{
-      @apply text-lg text-white font-bold mb-4
+      @apply text-lg text-[#000000] dark:text-white font-bold mb-4
   }
 
   .footer__link{
