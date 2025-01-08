@@ -287,7 +287,7 @@ const Sidebar = () => {
                             selected={selected}
                             setSelected={setSelected}
                         />*/}
-                        <div onClick={logoutHandler}>
+                        {/*<div onClick={logoutHandler}>
                             <Item
                                 title="logout"
                                 to="/"
@@ -295,7 +295,7 @@ const Sidebar = () => {
                                 selected={selected}
                                 setSelected={setSelected}
                             />
-                        </div>
+                        </div>*/}
                     </Box>
                 </Menu>
             </ProSidebar>

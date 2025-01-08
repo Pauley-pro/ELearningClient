@@ -16,37 +16,36 @@
   }
 }
 
-input::-webkit-outer-spin-button
-input::-webkit-inner-spin-button{
+input::-webkit-outer-spin-button input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-::-webkit-scrollbar{
+::-webkit-scrollbar {
   width: 8px;
 }
 
 /* Track */
-::-webkit-scrollbar-track{
+::-webkit-scrollbar-track {
   background: #1771c6;
 }
 
 /* Handle */
-::-webkit-scrollbar-thumb{
+::-webkit-scrollbar-thumb {
   background: #f5f5f5b0;
 }
 
 /* Handle on hover */
-::-webkit-scrollbar-thumb:hover{
+::-webkit-scrollbar-thumb:hover {
   background: #32ae7e;
 }
 
-.ql-editor.ql-blank::before{
-  color: #fff!important;
+.ql-editor.ql-blank::before {
+  color: #fff !important;
 }
 
 /* Firefox */
-input[type="number"]{
+input[type="number"] {
   -moz-appearance: textfield;
 }
 
@@ -54,54 +53,66 @@ body {
   color: rgb(var(--foreground-rgb));
 }
 
-.hero_animation{
+.hero_animation {
   background-image: linear-gradient(147.92deg, hsla(239, 76%, 53%, 0.456) 10.41%, hsla(0, 0%, 100%, 0) 89.25%);
   animation: changeBackgroundColor 8s infinite alternate
 }
 
-@keyframes changeBackgroundColor{
-  0%, 100%{
+@keyframes changeBackgroundColor {
+
+  0%,
+  100% {
     opacity: 1;
   }
-  16.67%{
+
+  16.67% {
     opacity: 0.9;
   }
-  33.33%{
+
+  33.33% {
     opacity: 0.8;
   }
-  50%{
+
+  50% {
     opacity: 0.6;
   }
-  66.67%{
+
+  66.67% {
     opacity: 0.5;
   }
-  83.33%{
+
+  83.33% {
     opacity: 0.4;
   }
 }
 
-@keyframes shake{
-  0%{
+@keyframes shake {
+  0% {
     transform: translateX(0);
   }
-  20%{
+
+  20% {
     transform: translateX(-2px);
   }
-  40%{
+
+  40% {
     transform: translateX(2px);
   }
-  60%{
+
+  60% {
     transform: translateX(-2px);
   }
-  80%{
+
+  80% {
     transform: translateX(2px);
   }
-  100%{
+
+  100% {
     transform: translateX(0);
   }
 }
 
-.shake{
+.shake {
   animation: shake 0.5s ease-in-out
 }
 
@@ -128,6 +139,7 @@ body {
   border-radius: 50px;
   min-width: 80%;
 }
+
 .main {
   padding: 20px 60px;
 }
@@ -140,6 +152,7 @@ body {
   flex-direction: column !important;
   text-align: center !important;
 }
+
 .avatar {
   width: 120px !important;
   height: 120px !important;
@@ -147,17 +160,20 @@ body {
   padding: 3px;
   border-radius: 50%;
 }
+
 .Name {
   font-size: 20px;
   font-weight: bolder;
   color: #994d47;
 }
+
 .heading {
   text-align: center;
   font-family: "Roboto";
   color: #994d47;
   font-size: 40px;
 }
+
 .designation {
   color: #994d47;
   font-size: 15px;
@@ -170,6 +186,7 @@ body {
 .slick-next::before {
   display: none;
 }
+
 .slick-slider {
   padding: 25px !important;
   border-radius: 15px !important;
@@ -203,25 +220,23 @@ body {
 }
 
 @layer components {
-  .nav__link{
-      @apply relative text-xl w-fit block after:block after:content-[""] font-semibold after:absolute after:h-[3px]
-      after:bg-yellow-400 text-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition 
-      after:duration-300 after:origin-right
+  .nav__link {
+    @apply relative text-xl w-fit block after:block after:content-[""] font-semibold after:absolute after:h-[3px] after:bg-yellow-400 text-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-right
   }
 
-  .button__cls{
-      @apply md:px-12 md:py-2.5 px-6 py-1.5 text-white font-semibold text-sm md:text-lg transition-all duration-200 rounded-lg
+  .button__cls {
+    @apply md:px-12 md:py-2.5 px-6 py-1.5 text-white font-semibold text-sm md:text-lg transition-all duration-200 rounded-lg
   }
 
-  .footer__heading{
-      @apply text-lg text-[#000000] dark:text-white font-bold mb-4
+  .footer__heading {
+    @apply text-lg text-[#000000] dark:text-white font-bold mb-4
   }
 
-  .footer__link{
-      @apply text-sm text-[#000000] text-opacity-50 dark:text-white hover:text-green-700 dark:text-opacity-60 mb-3 w-fit
+  .footer__link {
+    @apply text-sm text-[#000000] text-opacity-50 dark:text-white hover:text-green-700 dark:text-opacity-60 mb-3 w-fit
   }
 
-  .footer__span{
-      @apply text-[#000000] dark:text-white hover:text-white
+  .footer__span {
+    @apply text-[#000000] dark:text-white hover:text-white
   }
 }
