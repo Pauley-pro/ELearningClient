@@ -66,8 +66,7 @@ const Footer = () => {
                 <div>
                     <h1 className="footer__heading">Contact Info</h1>
                     <p className="footer__span">Call us: <span className="footer__link">+1-234-567-890</span></p>
-                    <p className="footer__span">Address: <span className="footer__link">XYZ Palace</span></p>
-                    <p className="footer__span">Mail Us: <span className="footer__link">elearning@gmail.com</span></p>
+                    <p className="footer__span">Mail Us: <span className="footer__link">admin@mindzyte.com</span></p>
                 </div>
             </div>
             <p className="text-center text-black dark:text-white pt-[30px] pb-[30px]">
