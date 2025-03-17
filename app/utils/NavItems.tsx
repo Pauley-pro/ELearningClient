@@ -48,7 +48,7 @@ const NavItems: React.FC<Props> = ({ activeItem, isMobile }) => {
                 <div className="800px:hidden mt-5">
                     <div className="w-full text-center py-6">
                         <Link href={"/"} passHref>
-                            <span className={`text-[25px] font-Poppins font-[500] text-black dark:text-white`}>ELearning</span>
+                            <span className={`text-[25px] font-Poppins font-[500] text-black dark:text-white`}>Mindzyte</span>
                         </Link>
                     </div>
                     {

@@ -93,7 +93,7 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
                                     <div>
                                         <Link href="/">
                                             <Image
-                                                src={"https://res.cloudinary.com/polad/image/upload/v1736343154/WhatsApp_Image_2025-01-08_at_2.30.37_PM-removebg-preview_jn4sja.png"}
+                                                src={"https://res.cloudinary.com/polad/image/upload/v1742228489/mindzyte_u9rvtw.png"}
                                                 alt="logo"
                                                 height={100}
                                                 width={130}
