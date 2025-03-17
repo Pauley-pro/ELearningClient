@@ -71,7 +71,7 @@ const DashboardHeader: FC<Props> = ({ open, setOpen }) => {
             </div>
             {
                 open && (
-                    <div className="w-[350px] h-[50vh] dark:bg-[#111C43] bg-white shadow-xl absolute top-16 z-10 rounded">
+                    <div className="w-[350px] h-auto overflow-auto max-h-[400px] dark:bg-[#111C43] bg-white shadow-xl absolute top-16 z-10 rounded">
                         <h5 className="text-center text-[20px] font-Poppins text-black dark:text-white p-3">
                             Notifications
                         </h5>
@@ -89,7 +89,7 @@ const DashboardHeader: FC<Props> = ({ open, setOpen }) => {
                                             Mark as read
                                         </p>
                                     </div>
-                                    <p className="text-black dark:text-white">
+                                    <p className="p-2 text-[#000] dark:text-[#fff] dark:text-opacity-60">
                                         {item.message}
                                     </p>
                                     <p className="p-2 text-black dark:text-white text-[14px]">
