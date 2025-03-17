@@ -53,8 +53,8 @@ const CoursesContent = () => {
             />
             <div className="w-[95%] 800px-w-[85%] m-auto min-h-[70vh]">
                 <Heading
-                    title="All courses - Elearning"
-                    description="Elearning is a programming community."
+                    title="All courses - Mindzyte"
+                    description="Mindzyte is a programming community."
                     keywords="Programming community, coding skills, export insights, collaboration, growth"
                 />
                 <br />

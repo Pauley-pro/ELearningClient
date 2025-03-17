@@ -33,7 +33,7 @@ const Page = ({ params }: Props) => {
                     <div>
                         <Heading
                             title={`${user?.name} - Certificate `}
-                            description="ELearning is a platform for students to learn and get help from teachers"
+                            description="Mindzyte is a platform for students to learn and get help from teachers"
                             keywords="Programming, MERN, Redux, Machine Learning"
                         />
                         <Header

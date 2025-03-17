@@ -18,8 +18,8 @@ const Page: FC<Props> = (props) => {
         <div className="min-h-screen">
             <Protected>
                 <Heading 
-                    title={`${user?.name} profile - ELearning`}
-                    description="ELearning is a platform for students to learn and get help from teachers"
+                    title={`${user?.name} profile - Mindzyte`}
+                    description="Mindzyte is a platform for students to learn and get help from teachers"
                     keywords="Programming, MERN, Redux, Machine Learning"
                 />
                 <Header

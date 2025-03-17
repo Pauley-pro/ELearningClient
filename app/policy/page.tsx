@@ -15,8 +15,8 @@ const Page = (props: Props) => {
     return (
         <div className="min-h-screen">
             <Heading
-                title="Policy - ELearning"
-                description="ELearning is a platform for students to learn and get help from teachers"
+                title="Policy - Mindzyte"
+                description="Mindzyte is a platform for students to learn and get help from teachers"
                 keywords="Programming, MERN, Redux, Machine Learning"
             />
             <Header
