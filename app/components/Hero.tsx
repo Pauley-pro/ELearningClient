@@ -40,7 +40,7 @@ const Hero: FC<Props> = (props) => {
 
                                 <div className="mt-6 flex flex-col md:flex-row gap-4 lg:justify-start">
                                     <Link href="/courses">
-                                        <button className="bg-blue-500 hover:bg-blue-600 transition duration-300 px-6 py-2 rounded-full text-white font-medium">
+                                        <button className="bg-blue-500 hover:bg-blue-600 transition duration-300 px-6 py-3 rounded-full text-white font-medium">
                                             Explore Now
                                         </button>
                                     </Link>
