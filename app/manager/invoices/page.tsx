@@ -14,7 +14,7 @@ const page = (props: Props) => {
             <AdminProtected>
                 <Heading
                     title="Mindzyte - Manager"
-                    description="Maager is a platform for students to learn and get help from teachers"
+                    description="Mindzyte is a platform for students to learn and get help from teachers"
                     keywords="Programming, MERN, Redux, Machine Learning"
                 />
                 <div className="flex h-screen">

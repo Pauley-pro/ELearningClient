@@ -19,7 +19,7 @@ const schema = Yup.object().shape({
 
 const Signup:FC<Props> = ({setRoute}) => {
     const [show, setShow] = useState(false);
-    const [register, {data, error, isSuccess}] = useRegisterMutation();
+    const [register, {isLoading, data, error, isSuccess}] = useRegisterMutation();
     useEffect(() => {
       if (isSuccess){
         const message = data?.message || "Registration successful";
@@ -115,11 +115,23 @@ const Signup:FC<Props> = ({setRoute}) => {
                   <span className="text-red-500 pt-2 block">{errors.email}</span>
                 )}
                 <div className="w-full mt-5">
+                    <button
+                        type="submit"
+                        className={`${styles.button}`} 
+                        disabled={isLoading}
+                    >
+                        {isLoading ? "Loading..." : "Sign up"}
+                    </button>
+                </div>
+
+                {/*
+                <div className="w-full mt-5">
                   <input type="submit"
                     value="Sign up"
                     className={`${styles.button}`} 
                   />
                 </div>
+                */}
                 <br />
                 <h5 className="text-center pt-4 font-Poppins text-[14px] text-black dark:text-white">
                     Or join with

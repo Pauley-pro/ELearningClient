@@ -23,7 +23,7 @@ const schema = Yup.object().shape({
 
 const Login:FC<Props> = ({ setRoute, setOpen, refetch }) => {
     const [show, setShow] = useState(false);
-    const [login,{isSuccess, error}] = useLoginMutation();
+    const [login,{isLoading, isSuccess, error}] = useLoginMutation();
     const formik = useFormik({
         initialValues: {email:"",password:""},
         validationSchema: schema,
@@ -95,11 +95,22 @@ const Login:FC<Props> = ({ setRoute, setOpen, refetch }) => {
                     )}
                 </div>
                 <div className="w-full mt-5">
+                    <button
+                        type="submit"
+                        className={`${styles.button}`} 
+                        disabled={isLoading}
+                    >
+                        {isLoading ? "Loading..." : "Login"}
+                    </button>
+                </div>
+
+               {/*<div className="w-full mt-5">
                     <input type="submit"
                         value="Login"
                         className={`${styles.button}`} 
                     />
                 </div>
+                */}
                 <br />
                 <h5 className="text-center pt-4 font-Poppins text-[14px] text-black dark:text-white">
                     Or join with
