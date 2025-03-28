@@ -6,6 +6,7 @@ import { RiLockPasswordLine } from "react-icons/ri";
 import { SiCoursera } from "react-icons/si"
 import { AiOutlineLogout } from 'react-icons/ai';
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
+import { FaCalendarAlt, FaCalendarCheck } from 'react-icons/fa';
 
 
 type Props = {
@@ -42,6 +43,18 @@ const SideBarProfile: FC<Props> = ({ user, active, avatar, setActive, logOutHand
         <SiCoursera size={20} className="dark:text-white text-black" />
         <h5 className="pl-2 800px:block hidden font-Poppins dark:text-white text-black">
           Enrolled Courses
+        </h5>
+      </div>
+      <div className={`w-full flex items-center px-3 py-4 cursor-pointer ${active === 8 ? "dark:bg-slate-800 bg-white" : "bg-transparent"}`} onClick={() => setActive(8)}>
+        <FaCalendarCheck size={20} className="dark:text-white text-black" />
+        <h5 className="pl-2 800px:block hidden font-Poppins dark:text-white text-black">
+          Book Appointment
+        </h5>
+      </div>
+      <div className={`w-full flex items-center px-3 py-4 cursor-pointer ${active === 9 ? "dark:bg-slate-800 bg-white" : "bg-transparent"}`} onClick={() => setActive(9)}>
+        <FaCalendarAlt size={20} className="dark:text-white text-black" />
+        <h5 className="pl-2 800px:block hidden font-Poppins dark:text-white text-black">
+          My Appointments
         </h5>
       </div>
       {

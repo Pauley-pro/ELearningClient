@@ -8,6 +8,8 @@ import ChangePassword from './ChangePassword';
 import CourseCard from '../Course/CourseCard';
 import { useGetUsersAllCoursesQuery } from '@/redux/features/courses/coursesApi';
 import toast from 'react-hot-toast';
+import BookAppointment from './BookAppointment';
+import MyAppointments from './MyAppointments';
 
 type Props = {
     user: any;
@@ -104,6 +106,20 @@ const Profile: FC<Props> = ({ user }) => {
                                 </h1>
                             )
                         }
+                    </div>
+                )
+            }
+            {
+                active === 8 && (
+                    <div className="w-full h-full bg-transparent mt-[80px]">
+                        <BookAppointment />
+                    </div>
+                )
+            }
+            {
+                active === 9 && (
+                    <div className="w-full h-full bg-transparent mt-[80px]">
+                        <MyAppointments />
                     </div>
                 )
             }
