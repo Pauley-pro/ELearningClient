@@ -96,7 +96,7 @@ const MyAppointments = () => {
 
                 const statusClasses =
                     status === "APPROVED"
-                        ? "text-[#219653] bg-success"
+                        ? "text-[#159a4f] bg-[#2E3A47]"
                         : status === "RESCHEDULED"
                             ? "text-[#D34053] bg-[#383342]"
                             : status === "PENDING"
