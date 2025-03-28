@@ -136,8 +136,8 @@ const Appointments = () => {
         {
             field: "name",
             headerName: "Name",
-            flex: 1,
-            minWidth: 200,
+            flex: 0.8,
+            minWidth: 180,
             renderCell: (params: any) => {
                 const name = params.row.name;
                 const appId = params.row.appId;
@@ -168,8 +168,8 @@ const Appointments = () => {
         {
             field: "status",
             headerName: "Status",
-            flex: 0.8,
-            minWidth: 180,
+            flex: 0.6,
+            minWidth: 160,
             renderCell: (params: any) => {
                 const status = params.row.status;
                 const statusClasses =
@@ -193,7 +193,7 @@ const Appointments = () => {
                 );
             },
         },
-        { field: "date", headerName: "Date", flex: 1, minWidth: 150, },
+        { field: "date", headerName: "Date", flex: 0.7, minWidth: 150, },
         {
             field: "reason",
             headerName: "Reason",
