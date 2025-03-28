@@ -30,6 +30,7 @@ import { IoMdArrowBack } from "react-icons/io";
 import { useLogOutQuery } from '@/redux/features/auth/authApi';
 import { signOut } from 'next-auth/react';
 import toast from 'react-hot-toast';
+import { FaCalendarAlt } from 'react-icons/fa';
 
 interface itemProps {
     title: string;
@@ -223,6 +224,13 @@ const Sidebar = () => {
                             title="Live Course"
                             to="/admin/courses"
                             icon={<OndemandVideoIcon />}
+                            selected={selected}
+                            setSelected={setSelected}
+                        />
+                        <Item
+                            title="Appointments"
+                            to="/admin/appointments"
+                            icon={<FaCalendarAlt />}
                             selected={selected}
                             setSelected={setSelected}
                         />

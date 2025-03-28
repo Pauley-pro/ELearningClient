@@ -16,7 +16,6 @@ const schema = Yup.object().shape({
 
 const BookAppointment: FC<Props> = (props) => {
     const [selectedDate, setSelectedDate] = useState<Date | null>(null);
-
     const [bookAppointment, { isLoading, data, error, isSuccess }] = useBookAppointmentMutation();
 
     const formik = useFormik({
